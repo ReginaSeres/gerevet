@@ -16,7 +16,7 @@ apply plugin: 'java'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'demo'
+    baseName = 'gerevet'
     version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
@@ -31,6 +31,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-undertow")
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
