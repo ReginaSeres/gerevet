@@ -1,5 +1,6 @@
 package hu.jusoft.gerevet.controller;
 
+import hu.jusoft.gerevet.modelbuilder.HomeModelBuilder;
 import hu.jusoft.gerevet.domain.model.Patient;
 import hu.jusoft.gerevet.service.ListingPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,32 +10,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 /**
- * Created by Gidu on 12/9/2015.
+ * Created by Regina Seres on 12/9/2015.
  */
 @Controller
 public class HomeController {
     @Autowired
     private ListingPatientService listingPatientService;
 
-    @RequestMapping(value = {"", "/"})
-    public String index(@RequestParam(value = "actPage", required = false, defaultValue = "1") int actPage, Model model) {
-        return setModel("", actPage, model);
+    @Autowired
+    private HomeModelBuilder homeModelBuilder;
+
+    private final static Logger LOG = LoggerFactory
+            .getLogger(HomeController.class);
+
+    @RequestMapping(value = {"/"})
+    public String index(@RequestParam(value = "actPage", required = false, defaultValue = "1") int actPage, Model model, Locale locale) {
+        return homeModelBuilder.buildHomeModelMap(actPage, model, locale);
     }
 
     @RequestMapping(value = {"/search/{actPage}"})
-    public String indexSearch(@PathVariable("actPage") int actPage, Model model) {
-        return setModel("", actPage, model);
+    public String indexSearch(@PathVariable("actPage") int actPage, Model model, Locale locale) {
+        return homeModelBuilder.buildHomeModelMap(actPage, model, locale);
     }
 
     @RequestMapping(value = {"/search/{query}/{actPage}"})
-    public String searchNameJSON(@PathVariable("query") String query, @PathVariable("actPage") int actPage, Model model) {
-        return setModel(query, actPage, model);
+    public String searchNameJSON(@PathVariable("query") String query, @PathVariable("actPage") int actPage, Model model, Locale locale) {
+        return homeModelBuilder.buildHomeModelMap(query, actPage, model, locale);
     }
 
     @RequestMapping("/searchName")
@@ -43,7 +53,7 @@ public class HomeController {
         try {
             response.sendRedirect("/search/" + queryName + "/1");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("Unexpected exception happened. Faild to redirect the webpage");
         }
     }
 
@@ -54,19 +64,5 @@ public class HomeController {
         List<Patient> listOfPatient = listingPatientService.getListOfPatient();
 
         return listOfPatient;
-    }
-
-    public String setModel(String queryName, int actPage, Model model) {
-
-        List<Patient> listOfPatient = listingPatientService.getTenPatientFromActualPage(actPage);
-        int pagesCount = listingPatientService.getPagesCount();
-
-        model.addAttribute("actPage", actPage);
-        model.addAttribute("listOfPatient", listOfPatient);
-        model.addAttribute("pageCount", pagesCount);
-        model.addAttribute("url", "/search/*");
-        model.addAttribute("queryName", queryName);
-
-        return "index";
     }
 }

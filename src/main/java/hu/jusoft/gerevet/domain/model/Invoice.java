@@ -8,38 +8,28 @@ import java.util.Date;
 public class Invoice {
     private String id;
     private Date invoceDate;
-    private int invoceNumber;
     private Date paymentDeadline;
     private Date dayOfPayment;
 
-    private String getId() {
+    public Invoice(){}
+
+    public Invoice(String id, Date invoceDate, Date paymentDeadline, Date dayOfPayment) {
+        this.id = id;
+        this.invoceDate = invoceDate;
+        this.paymentDeadline = paymentDeadline;
+        this.dayOfPayment = dayOfPayment;
+    }
+
+    public String getId() {
         return id;
     }
-    private void setId(String id) {
-        this.id = id;
-    }
-    private Date getInvoceDate() {
+    public Date getInvoceDate() {
         return invoceDate;
     }
-    private void setInvoceDate(Date invoceDate) {
-        this.invoceDate = invoceDate;
-    }
-    private int getInvoceNumber() {
-        return invoceNumber;
-    }
-    private void setInvoceNumber(int invoceNumber) {
-        this.invoceNumber = invoceNumber;
-    }
-    private Date getPaymentDeadline() {
+    public Date getPaymentDeadline() {
         return  paymentDeadline;
     }
-    private void setPaymentDeadline(Date paymentDeadline) {
-        this.paymentDeadline = paymentDeadline;
-    }
-    private Date getDayOfPayment() {
+    public Date getDayOfPayment() {
         return dayOfPayment;
-    }
-    private void setDayOfPayment(Date dayOfPayment) {
-        this.dayOfPayment = dayOfPayment;
     }
 }

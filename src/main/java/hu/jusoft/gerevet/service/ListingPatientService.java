@@ -9,12 +9,11 @@ import java.util.List;
  * Created by Regina Seres on 12/10/2015.
  */
 public interface ListingPatientService {
+    List<Patient> getTenPatientFromActualPage(int actPage);
 
-    public List<Patient> getTenPatientFromActualPage(int actPage);
+    int getPagesCount();
 
-    public int getPagesCount();
+    List<Patient> getListOfPatientFromQuery(String query);
 
-    public List<Patient> getListOfPatientFromQuery(String query);
-
-    public List<Patient> getListOfPatient();
+    List<Patient> getListOfPatient();
 }

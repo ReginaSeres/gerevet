@@ -1,7 +1,6 @@
 package hu.jusoft.gerevet.controller;
 
-import hu.jusoft.gerevet.domain.model.Patient;
-import hu.jusoft.gerevet.service.PatientManagerService;
+import hu.jusoft.gerevet.modelbuilder.PatientModelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,16 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PatientController {
 
     @Autowired
-    private PatientManagerService patientManagerService;
+    private PatientModelBuilder patientModelBuilder;
 
     @RequestMapping("/patient/{id}")
     public String patient(@PathVariable("id") String id, Model model) {
-        Patient actualPatient = patientManagerService.getActualPatientFromId(id);
+        return patientModelBuilder.buildPatientModelMap(id, model);
+    }
 
-        System.out.println(actualPatient.getName());
+    @RequestMapping("/editPatient/{id}")
+    public String editPatient(@PathVariable("id") String id, Model model) {
+        return patientModelBuilder.buildEditPatientModelMap(id, model);
+    }
 
-        model.addAttribute("patient", actualPatient);
-
-        return "patient";
+    @RequestMapping("/updatePatient/{id}")
+    public String updatePatient(@PathVariable("id") String id, Model model) {
+        return "editPatient";
     }
 }

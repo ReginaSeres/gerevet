@@ -7,5 +7,5 @@ import hu.jusoft.gerevet.domain.model.Patient;
  */
 public interface PatientManagerService {
 
-    public Patient getActualPatientFromId(String id);
+    Patient getActualPatientFromId(String id);
 }

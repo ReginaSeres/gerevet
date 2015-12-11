@@ -1,7 +1,9 @@
+<#import "spring.ftl" as spring />
 <#include "macros/header.ftl">
 <#include "macros/footer.ftl">
 <#include "macros/paging.ftl">
-<#include "macros/patientDashBoard.ftl">
+<#include "macros/general.ftl">
+<#include "macros/examinationDashBoard.ftl">
 
 <@header />
     <div class="row" style="padding-bottom:2em">
@@ -14,7 +16,7 @@
                        value="${queryName}"
                     </#if>
                 </#if>
-                       placeholder="Keresés...">
+                       placeholder="<@label "index.placeholder.search" />">
                 <input type="hidden" name="nodeId" id="nodeId"/>
             </div>
         </form>
@@ -25,8 +27,8 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <#list listOfPatient as patient>
-                 <@patientDashBoard patient/>
+            <#list listOfExaminations as examination>
+                 <@examinationDashBoard examination/>
             </#list>
         </div>
     </div>

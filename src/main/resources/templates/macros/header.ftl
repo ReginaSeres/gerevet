@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <head>
+
     <link rel="stylesheet" type="text/css" href="/css/font-awsome.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -11,6 +12,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui-1.10.3.min.js"></script>
     <script type="text/javascript" src="/js/searchName.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
 </head>
 <body>
 
@@ -29,6 +31,5 @@
 </nav>
 
 <div class="container">
-
 
 </#macro>

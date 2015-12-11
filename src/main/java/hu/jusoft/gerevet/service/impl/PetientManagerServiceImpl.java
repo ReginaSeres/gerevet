@@ -25,7 +25,7 @@ public class PetientManagerServiceImpl implements PatientManagerService {
         for (int i = 0; i < listOfPatient.size(); i++) {
             if (id.equals(listOfPatient.get(i).getId())) {
                 resultPatient = listOfPatient.get(i);
-                continue;
+                break;
             }
         }
 

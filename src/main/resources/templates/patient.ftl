@@ -1,7 +1,8 @@
+<#import "spring.ftl" as spring />
 <#include "macros/header.ftl">
 <#include "macros/footer.ftl">
 <#include "macros/general.ftl">
-<#include "macros/listOfTreatment.ftl">
+<#include "macros/listOfExamination.ftl">
 
 <@header />
 
@@ -12,10 +13,13 @@
         "dot-circle-o,map-marker,map-marker,phone,envelope-o"
         "Név,Város,Cím,Telefon,Email"/>
     </div>
+    <div class="col-md-2">
+        <a href="/editPatient/${patient.id}" class="btn btn-primary">Szerkesztés</a>
+    </div>
 </div>
 
 <div class="row">
-    <@listOfTreatment patient.treatments/>
+    <@listOfExamination examinations/>
 </div>
 
 <@footer />

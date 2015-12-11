@@ -1,3 +1,7 @@
+<#macro label id>
+    <@spring.messageText id id />
+</#macro>
+
 <#macro icon name>
 <i class="fa fa-${name}"></i>
 </#macro>

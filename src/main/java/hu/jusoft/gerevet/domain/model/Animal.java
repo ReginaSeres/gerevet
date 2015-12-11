@@ -5,46 +5,45 @@ package hu.jusoft.gerevet.domain.model;
  */
 public class Animal {
     private String id;
-    private String animal;
+    private Patient patient;
+    private String name;
     private String species;
     private String sort;
+    //this should be enum since there are countable options
     private String sex;
     private int age;
+
+    public Animal() {};
+
+    public Animal(String id, Patient patient, String name, String species, String sort, String sex, int age) {
+        this.id = id;
+        this.patient = patient;
+        this.name = name;
+        this.species = species;
+        this.sort = sort;
+        this.sex = sex;
+        this.age = age;
+    }
 
     public String getId() {
         return id;
     }
-    public void setId(String id) {
-        this.id = id;
+    public Patient getPatient() {
+        return patient;
     }
-    public String getAnimal() {
-        return animal;
-    }
-    public void setAnimal(String animal) {
-        this.animal = animal;
+    public String getName() {
+        return name;
     }
     public String getSpecies() {
         return species;
     }
-    public void setSpecies(String species) {
-        this.species = species;
-    }
     public String getSort() {
         return sort;
-    }
-    public void setSort(String sort) {
-        this.sort = sort;
     }
     public String getSex() {
         return sex;
     }
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
     public int getAge() {
         return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
     }
 }
