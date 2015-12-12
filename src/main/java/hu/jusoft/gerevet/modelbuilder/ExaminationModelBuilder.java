@@ -19,6 +19,7 @@ public class ExaminationModelBuilder {
         Examination actualExamination = examinationManagerService.getActualExaminationFromId(examinationId);
 
         model.addAttribute("examination", actualExamination);
+        model.addAttribute("editJS", "editJS");
 
         return "examination";
     }

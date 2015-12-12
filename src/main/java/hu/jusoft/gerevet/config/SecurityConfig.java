@@ -6,9 +6,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.RegexRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.regex.Pattern;
 
 /**
- * Created by Gidu on 12/11/2015.
+ * Created by Regina Seres on 12/11/2015.
  */
 @Configuration
 @EnableWebSecurity
@@ -20,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 .antMatchers("/").hasAnyRole("USER")
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -28,13 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll();
+
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
     }
 
 }

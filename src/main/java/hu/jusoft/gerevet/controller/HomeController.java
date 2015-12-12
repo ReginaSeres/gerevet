@@ -32,17 +32,17 @@ public class HomeController {
     private final static Logger LOG = LoggerFactory
             .getLogger(HomeController.class);
 
-    @RequestMapping(value = {"/"})
+    @RequestMapping("")
     public String index(@RequestParam(value = "actPage", required = false, defaultValue = "1") int actPage, Model model, Locale locale) {
         return homeModelBuilder.buildHomeModelMap(actPage, model, locale);
     }
 
-    @RequestMapping(value = {"/search/{actPage}"})
+    @RequestMapping("/search/{actPage}")
     public String indexSearch(@PathVariable("actPage") int actPage, Model model, Locale locale) {
         return homeModelBuilder.buildHomeModelMap(actPage, model, locale);
     }
 
-    @RequestMapping(value = {"/search/{query}/{actPage}"})
+    @RequestMapping("/search/{query}/{actPage}")
     public String searchNameJSON(@PathVariable("query") String query, @PathVariable("actPage") int actPage, Model model, Locale locale) {
         return homeModelBuilder.buildHomeModelMap(query, actPage, model, locale);
     }

@@ -27,17 +27,13 @@ public class PatientModelBuilder {
         return "patient";
     }
 
-    public String buildEditPatientModelMap(String id, Model model) {
-        setPatientAndEditPatientModelMap(id, model);
-        return "editPatient";
-    }
-
     private void setPatientAndEditPatientModelMap(String id, Model model) {
         Patient actualPatient = patientManagerService.getActualPatientFromId(id);
         List<Examination> listOfExaminationsForActualPatient = listingExaminationService.getListOfExaminationsForActualPatientId(id);
 
         model.addAttribute("patient", actualPatient);
         model.addAttribute("examinations", listOfExaminationsForActualPatient);
+        model.addAttribute("editJS", "editJS");
     }
 
 }

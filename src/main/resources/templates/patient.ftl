@@ -1,4 +1,5 @@
 <#import "spring.ftl" as spring />
+<#import "directive/control.ftl" as ui />
 <#include "macros/header.ftl">
 <#include "macros/footer.ftl">
 <#include "macros/general.ftl">
@@ -8,13 +9,11 @@
 
 <div class="row">
     <div class="col-md-10">
-        <@fields patient
-        "name,city,address,phoneNumber,emailAddress,"
-        "dot-circle-o,map-marker,map-marker,phone,envelope-o"
-        "Név,Város,Cím,Telefon,Email"/>
+        <@ui.control "/widgets/patientDetails.ftl", patient />
     </div>
     <div class="col-md-2">
-        <a href="/editPatient/${patient.id}" class="btn btn-primary">Szerkesztés</a>
+        <a id="editPatient" class="btn btn-primary"><@label "button.edit" /></a>
+        <a id="updatePatient" class="btn btn-primary hidden"><@label "button.save" /></a>
     </div>
 </div>
 
