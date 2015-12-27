@@ -22,7 +22,8 @@
         </form>
 
         <form class="navbar-form navbar-left" role="add">
-            <button type="submit" class="btn btn-default">+</button>
+            <a href="/addPatient" class="btn btn-default">+ <@label "patient" /></a>
+            <a href="/addAnimal" class="btn btn-default">+ <@label "animal" /></a>
         </form>
     </div>
     <div class="row">

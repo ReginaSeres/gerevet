@@ -1,7 +1,6 @@
 package hu.jusoft.gerevet.service;
 
-import hu.jusoft.gerevet.domain.model.Patient;
-import org.springframework.stereotype.Service;
+import hu.jusoft.gerevet.view.model.PatientPageModel;
 
 import java.util.List;
 
@@ -9,11 +8,11 @@ import java.util.List;
  * Created by Regina Seres on 12/10/2015.
  */
 public interface ListingPatientService {
-    List<Patient> getTenPatientFromActualPage(int actPage);
+    List<PatientPageModel> getTenPatientFromActualPage(int actPage);
 
     int getPagesCount();
 
-    List<Patient> getListOfPatientFromQuery(String query);
+    List<PatientPageModel> getListOfPatientFromQuery(String query);
 
-    List<Patient> getListOfPatient();
+    List<PatientPageModel> getListOfPatient();
 }

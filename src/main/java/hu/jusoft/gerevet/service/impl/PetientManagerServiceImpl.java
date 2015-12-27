@@ -1,11 +1,14 @@
 package hu.jusoft.gerevet.service.impl;
 
-import hu.jusoft.gerevet.domain.model.Patient;
+import hu.jusoft.gerevet.repository.model.Patient;
+import hu.jusoft.gerevet.view.model.PatientPageModel;
+import hu.jusoft.gerevet.repository.PatientRepository;
 import hu.jusoft.gerevet.service.ListingPatientService;
 import hu.jusoft.gerevet.service.PatientManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -17,10 +20,13 @@ public class PetientManagerServiceImpl implements PatientManagerService {
     @Autowired
     private ListingPatientService listingPatientService;
 
+    @Autowired
+    private PatientRepository patientRepository;
+
     @Override
-    public Patient getActualPatientFromId(String id) {
-        List<Patient> listOfPatient = listingPatientService.getListOfPatient();
-        Patient resultPatient = new Patient();
+    public PatientPageModel getActualPatientFromId(String id) {
+        List<PatientPageModel> listOfPatient = listingPatientService.getListOfPatient();
+        PatientPageModel resultPatient = new PatientPageModel();
 
         for (int i = 0; i < listOfPatient.size(); i++) {
             if (id.equals(listOfPatient.get(i).getId())) {
@@ -30,5 +36,21 @@ public class PetientManagerServiceImpl implements PatientManagerService {
         }
 
         return resultPatient;
+    }
+
+    @Override
+    public Patient findOne(String id) {
+        return patientRepository.findOne(id);
+    }
+
+    @Override
+    public String save(Patient patient) {
+        patientRepository.save(patient);
+        return patient.getId();
+    }
+
+    @Override
+    public List<Patient> findAllPatient() {
+        return patientRepository.findAll();
     }
 }

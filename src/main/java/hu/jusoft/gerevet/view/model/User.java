@@ -1,4 +1,4 @@
-package hu.jusoft.gerevet.domain.model;
+package hu.jusoft.gerevet.view.model;
 
 /**
  * Created by Regina Seres on 12/11/2015.

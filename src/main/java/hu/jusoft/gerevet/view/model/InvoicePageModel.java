@@ -1,19 +1,19 @@
-package hu.jusoft.gerevet.domain.model;
+package hu.jusoft.gerevet.view.model;
 
 import java.util.Date;
 
 /**
  * Created by Regina Seres on 12/10/2015.
  */
-public class Invoice {
+public class InvoicePageModel {
     private String id;
     private Date invoceDate;
     private Date paymentDeadline;
     private Date dayOfPayment;
 
-    public Invoice(){}
+    public InvoicePageModel(){}
 
-    public Invoice(String id, Date invoceDate, Date paymentDeadline, Date dayOfPayment) {
+    public InvoicePageModel(String id, Date invoceDate, Date paymentDeadline, Date dayOfPayment) {
         this.id = id;
         this.invoceDate = invoceDate;
         this.paymentDeadline = paymentDeadline;

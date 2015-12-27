@@ -17,7 +17,7 @@
                 <h3 class="panel-title"><@label "examination.panel.header.animal"/>:</h3>
             </div>
             <div class="panel-body">
-                <@ui.control "/widgets/animalDetails.ftl", examination.animal />
+            <@ui.control "/widgets/animalDetails.ftl", examination.animal />
                 <div class="col-lg-12 text-right">
                     <a id="editAnimal" class="btn btn-primary"><@label "button.edit" /></a>
                     <a id="updateAnimal" class="btn btn-primary hidden"><@label "button.save" /></a>
@@ -31,7 +31,7 @@
                 <h3 class="panel-title"><@label "examination.panel.header.patient"/>:</h3>
             </div>
             <div class="panel-body">
-                <@ui.control "/widgets/patientDetails.ftl", examination.patient />
+            <@ui.control "/widgets/patientDetails.ftl", examination.patient />
                 <div class="col-lg-12 text-right">
                     <a id="editPatient" class="btn btn-primary hidden "><@label "button.edit" /></a>
                     <a id="updatePatient" class="btn btn-primary disabled"><@label "button.save" /></a>
