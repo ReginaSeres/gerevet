@@ -1,7 +1,7 @@
 <#macro examinationData examination>
 
 <div class="col-lg-12">
-    <p><strong>Kezelés dátuma: </strong> ${examination.examinationDate?date}</p>
+    <p><strong><@label "examination.label.date" />: </strong> ${examination.examinationDate?date}</p>
     TODO: Documentations
 </div>
 <div class="col-lg-12">
