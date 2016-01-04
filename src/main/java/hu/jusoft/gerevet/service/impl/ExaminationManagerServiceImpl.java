@@ -1,6 +1,9 @@
 package hu.jusoft.gerevet.service.impl;
 
+import com.mongodb.gridfs.GridFSDBFile;
+import hu.jusoft.gerevet.repository.ExaminationRepositoryCustom;
 import hu.jusoft.gerevet.repository.model.Examination;
+import hu.jusoft.gerevet.repository.model.Picture;
 import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 import hu.jusoft.gerevet.repository.ExaminationRepository;
 import hu.jusoft.gerevet.repository.PatientRepository;
@@ -11,9 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +33,13 @@ public class ExaminationManagerServiceImpl implements ExaminationManagerService 
     private ListingExaminationService listingExaminationServiceService;
 
     @Autowired
+    private ExaminationRepositoryCustom examinationRepositoryCustom;
+
+    @Autowired
     private ExaminationRepository examinationRepository;
+
+    @Autowired
+    private GridFsTemplate gridFsTemplate;
 
     @Override
     public ExaminationPageModel getActualExaminationFromId(String examinationId) {
@@ -44,7 +57,28 @@ public class ExaminationManagerServiceImpl implements ExaminationManagerService 
     }
 
     @Override
-    public Examination findOne(String id) {
+    public Examination findExaminationByExaminationId(String id) {
         return examinationRepository.findOne(id);
+    }
+
+    @Override
+    public void addImageToExamination(String examinationId, Picture picture) {
+        examinationId = "566f091306583586f8ed32c7";
+        String pictureId = examinationRepositoryCustom.addImageToExamination(examinationId, picture);
+
+        Examination examination = examinationRepository.findOne(examinationId);
+
+        if (examination.getPictures() == null) {
+            examination.setPictures(new ArrayList<String>());
+        }
+        examination.getPictures().add(pictureId);
+
+        examinationRepository.save(examination);
+    }
+
+    @Override
+    public GridFSDBFile findImageById(String id) {
+        return gridFsTemplate.findOne(new Query(Criteria.where("_id").is(
+                id)));
     }
 }

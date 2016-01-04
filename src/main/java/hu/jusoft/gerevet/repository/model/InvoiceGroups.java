@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by Regina Seres on 12/13/2015.
  */
-public class InvoideGroups {
+public class InvoiceGroups {
     private String name;
     private List<Item> items;
 

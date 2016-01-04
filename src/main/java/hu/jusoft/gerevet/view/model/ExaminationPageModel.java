@@ -2,6 +2,7 @@ package hu.jusoft.gerevet.view.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Regina Seres on 12/10/2015.
@@ -11,7 +12,7 @@ public class ExaminationPageModel {
     private PatientPageModel patient;
     private AnimalPageModel animal;
     private InvoicePageModel invoice;
-    private PicturesPageModel pictures;
+    private List<String> pictures;
     private Date examinationDate;
     private String symptom;
     private String examination;
@@ -29,7 +30,7 @@ public class ExaminationPageModel {
         this.bruttoPrice = bruttoPrice;
     }
 
-    public ExaminationPageModel(String id, PatientPageModel patient, AnimalPageModel animal, InvoicePageModel invoice, PicturesPageModel pictures, Date examinationDate, String symptom, String examination, String comment, BigDecimal bruttoPrice) {
+    public ExaminationPageModel(String id, PatientPageModel patient, AnimalPageModel animal, InvoicePageModel invoice, List<String> pictures, Date examinationDate, String symptom, String examination, String comment, BigDecimal bruttoPrice) {
         this(id, patient, animal, invoice, examinationDate, bruttoPrice);
         this.pictures = pictures;
         this.symptom = symptom;
@@ -47,7 +48,7 @@ public class ExaminationPageModel {
     public InvoicePageModel getInvoice() {
         return invoice;
     }
-    public PicturesPageModel getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
     public Date getExaminationDate() {

@@ -6,6 +6,8 @@ import hu.jusoft.gerevet.view.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,11 +38,11 @@ public class ExaminationModelBuilder {
 
         ExaminationPageModel examinationPageModel = new ExaminationPageModel(
                 examination.getId(), patientPageModel, animalPageModel, invoicePageModel,
-                new PicturesPageModel(), examination.getExaminationDate(),
+                examination.getPictures(), examination.getExaminationDate(),
                 examination.getSymptom(), examination.getExamination(), examination.getComment(),
                 examination.getBruttoPrice());
 
-        model.put("examination", examinationPageModel);
+        model.put(EXAMINATION, examinationPageModel);
         return model;
     }
 }

@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 /**
  * Created by Regina Seres on 12/11/2015.
  */
@@ -37,36 +39,35 @@ public class AnimalController {
     @Autowired
     private PatientManagerService patientManagerService;
 
-    @RequestMapping("/animal/{actAnimal}")
-    public ModelAndView indexSearch(@PathVariable("actAnimal") String actAnimalId, Model model, Locale locale) {
+    @RequestMapping(value = ANIMAL_PARAMETERIZED_URL)
+    public ModelAndView indexSearch(@PathVariable(ANIMAL_INDEX_VARIABLE) String actAnimalId, Model model, Locale locale) {
         Animal animal = animalManagerService.findAnimalByPatientIdAndAnimalId(actAnimalId);
 
-        ModelAndView mav = new ModelAndView("animal");
-        mav.addAllObjects(animalModelBuilder.buildPatientModelMap(animal));
+        ModelAndView mav = new ModelAndView(ANIMAL);
+        mav.addAllObjects(animalModelBuilder.buildAnimalModelMap(animal));
 
         return mav;
     }
 
-    @RequestMapping("/addAnimal")
+    @RequestMapping(value = ADD_ANIMAL_URL)
     public ModelAndView addPatient() {
         List<Patient> listOfPatients = patientManagerService.findAllPatient();
 
-        ModelAndView mav = new ModelAndView("addAnimal");
+        ModelAndView mav = new ModelAndView(ADD_ANIMAL);
         mav.addAllObjects(patientModelBuilder.buildPatientModelMap(listOfPatients));
 
         return mav;
     }
 
-    @RequestMapping(value = "/saveAnimal", method = RequestMethod.POST)
+    @RequestMapping(value = SAVE_ANIMAL_URL, method = RequestMethod.POST)
     public void savePatient(
-            @ModelAttribute("animalPageModel") AnimalPageModel animalPageModel, HttpServletResponse response) throws IOException {
+            @ModelAttribute(ANIMAL_PAGE_MODEL_NAME) AnimalPageModel animalPageModel, HttpServletResponse response) throws IOException {
         animalManagerService.save(animalPageModel);
-         System.out.println("fut");
-        response.sendRedirect("/addAnimal/");
+        response.sendRedirect(ADD_ANIMAL);
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/updateAnimal"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = {UPDATE_ANIMAL_URL}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public AnimalPageModel updateAnimal(@RequestBody AnimalPageModel animal) {
         return animal;
     }

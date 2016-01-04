@@ -1,6 +1,7 @@
 package hu.jusoft.gerevet.repository.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Regina Seres on 12/13/2015.
@@ -10,7 +11,7 @@ public class Invoice {
     private Date invoceDate;
     private Date paymentDeadline;
     private Date dayOfPayment;
-    private InvoideGroups invoiceGroup;
+    private List<InvoiceGroups> invoiceGroup;
 
     public  String getInvoiceId() {
         return invoiceId;
@@ -24,7 +25,7 @@ public class Invoice {
     public Date getDayOfPayment() {
         return dayOfPayment;
     }
-    public InvoideGroups getInvoiceGroup() {
+    public List<InvoiceGroups> getInvoiceGroup() {
         return invoiceGroup;
     }
 }

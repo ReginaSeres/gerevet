@@ -5,6 +5,8 @@ import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 import hu.jusoft.gerevet.view.model.PatientPageModel;
 import org.springframework.stereotype.Component;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 import java.util.*;
 
 /**
@@ -19,6 +21,7 @@ public class PatientModelBuilder {
         Map<String, Object> model = new HashMap<>();
         model.put("patient", patientPageModel);
         model.put("examinations", new ArrayList<ExaminationPageModel>());
+        model.put(EDIT_JS, EDIT_JS);
 
         return model;
     }

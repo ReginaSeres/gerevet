@@ -5,6 +5,8 @@ import hu.jusoft.gerevet.repository.model.Animal;
 import hu.jusoft.gerevet.view.model.AnimalPageModel;
 import org.springframework.stereotype.Component;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +17,12 @@ import java.util.Map;
 @Component
 public class AnimalModelBuilder {
 
-    public Map<String,Object> buildPatientModelMap(Animal animal) {
+    public Map<String,Object> buildAnimalModelMap(Animal animal) {
         AnimalPageModel animalPageModel = build(animal);
 
         Map<String, Object> model = new HashMap<>();
-        model.put("animal", animalPageModel);
-        model.put("editJS", "editJS");
+        model.put(ANIMAL, animalPageModel);
+        model.put(EDIT_JS, EDIT_JS);
 
         return model;
     }

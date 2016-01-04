@@ -1,6 +1,7 @@
 package hu.jusoft.gerevet.repository;
 
 import hu.jusoft.gerevet.repository.model.Examination;
+import hu.jusoft.gerevet.repository.model.Picture;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

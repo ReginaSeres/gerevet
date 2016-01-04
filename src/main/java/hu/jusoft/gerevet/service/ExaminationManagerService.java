@@ -1,6 +1,8 @@
 package hu.jusoft.gerevet.service;
 
+import com.mongodb.gridfs.GridFSDBFile;
 import hu.jusoft.gerevet.repository.model.Examination;
+import hu.jusoft.gerevet.repository.model.Picture;
 import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 
 /**
@@ -9,5 +11,9 @@ import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 public interface ExaminationManagerService {
     ExaminationPageModel getActualExaminationFromId(String examinationId);
 
-    Examination findOne(String id);
+    Examination findExaminationByExaminationId(String id);
+
+    void addImageToExamination(String examinationId, Picture picture);
+
+    GridFSDBFile findImageById(String id);
 }

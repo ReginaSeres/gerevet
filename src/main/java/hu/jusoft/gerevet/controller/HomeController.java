@@ -17,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
@@ -29,9 +31,6 @@ public class HomeController {
     private static final int COUNT_EXAMINATIONS_ON_ONE_PAGE = 9;
 
     @Autowired
-    private ListingPatientService listingPatientService;
-
-    @Autowired
     private HomeModelBuilder homeModelBuilder;
 
     @Autowired
@@ -40,7 +39,7 @@ public class HomeController {
     private final static Logger LOG = LoggerFactory
             .getLogger(HomeController.class);
 
-    @RequestMapping("")
+    @RequestMapping(value = HOME_URL)
     public ModelAndView index(@RequestParam(value = "actPage", required = false, defaultValue = "1") int actPage, Locale locale) {
         actPage--;
         Page<Examination> listOfExaminationsPage = listingExaminationService.getNExamiationsInActualPage(actPage, COUNT_EXAMINATIONS_ON_ONE_PAGE);
@@ -51,29 +50,29 @@ public class HomeController {
         return mav;
     }
 
-    @RequestMapping("/search/{actPage}")
-    public ModelAndView indexSearch(@PathVariable("actPage") int actPage, Locale locale) {
+    @RequestMapping(value = SEARCH_ONE_PARAMETRIZED_URL)
+    public ModelAndView indexSearch(@PathVariable(SEARCH_INDEX_VARIABLE) int actPage, Locale locale) {
         return index(actPage, locale);
     }
 
-    @RequestMapping("/search/{query}/{actPage}")
-    public ModelAndView searchNameJSON(@PathVariable("query") String query, @PathVariable("actPage") int actPage, Model model, Locale locale) {
+    @RequestMapping(value = SEARCH_TWO_PARAMETRIZED_URL)
+    public ModelAndView searchNameJSON(@PathVariable(SEARCH_QUERY_VARIABLE) String query, @PathVariable(SEARCH_INDEX_VARIABLE) int actPage, Model model, Locale locale) {
         return index(actPage, locale);
     }
 
-    @RequestMapping("/searchName")
+    @RequestMapping(value = SEARCH_NAME_URL)
     public void searchForName(
             @RequestParam(value = "queryName", required = true) String queryName, HttpServletResponse response) {
         try {
-            response.sendRedirect("/search/" + queryName + "/1");
+            response.sendRedirect(SEARCH_URL + "/" + queryName + "/1");
         } catch (IOException e) {
             LOG.error("Unexpected exception happened. Faild to redirect the webpage");
         }
     }
 
-    @RequestMapping("/searchNameJSON")
+    @RequestMapping(value = SEARCH_NAME_JSON_URL)
     public @ResponseBody List<PatientPageModel> getPatientQueryName(
-            @RequestParam(value = "query", required = true) String query) {
+            @RequestParam(value = SEARCH_QUERY_VARIABLE, required = true) String query) {
         List<PatientPageModel> listOfPatient = new ArrayList<PatientPageModel>();
 
         return listOfPatient;

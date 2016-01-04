@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '4.2.3.RELEASE'
+        springBootVersion = '1.2.1.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -16,8 +16,8 @@ jar {
     baseName = 'gerevet'
     version = '0.0.1-SNAPSHOT'
 }
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
@@ -31,6 +31,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-freemarker")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.0.6'
     compile group: 'com.google.guava', name: 'guava', version: '12.0'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

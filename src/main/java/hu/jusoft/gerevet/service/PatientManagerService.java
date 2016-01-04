@@ -12,7 +12,7 @@ public interface PatientManagerService {
 
     PatientPageModel getActualPatientFromId(String id);
 
-    Patient findOne(String id);
+    Patient findTheOnlyPatientById (String id);
 
     String save(Patient patient);
 

@@ -12,7 +12,5 @@ public interface ListingPatientService {
 
     int getPagesCount();
 
-    List<PatientPageModel> getListOfPatientFromQuery(String query);
-
     List<PatientPageModel> getListOfPatient();
 }

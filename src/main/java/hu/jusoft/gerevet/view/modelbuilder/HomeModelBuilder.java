@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import java.util.*;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 /**
  * Created by Regina Seres on 12/11/2015.
  */
@@ -44,11 +46,11 @@ public class HomeModelBuilder {
             homePageModelList.add(examinationPageModel);
         }
 
-        model.put("listOfExaminations", homePageModelList);
-        model.put("pageCount", examinations.getTotalPages());
-        model.put("url", "/search/*");
-        model.put("actPage", examinations.getNumber() + 1);
-        model.put("queryName", queryName);
+        model.put(LIST_OF_EXAMINATIONS, homePageModelList);
+        model.put(EXAMINATIONS_PAGE_COUNT, examinations.getTotalPages());
+        model.put(URL, SEARCH_PARAMETERIZED_URL);
+        model.put(EXAMINATIONS_ACT_PAGE, examinations.getNumber() + 1);
+        model.put(EXAMINATION_QUERY_NAME, queryName);
 
         return model;
     }

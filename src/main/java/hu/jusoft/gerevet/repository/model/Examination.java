@@ -19,7 +19,7 @@ public class Examination {
     private String examination;
     private String comment;
     private BigDecimal bruttoPrice;
-    private List<Byte> pictures;
+    private List<String> pictures;
     private Invoice invoice;
     private Patient patient;
 
@@ -47,7 +47,7 @@ public class Examination {
     public BigDecimal getBruttoPrice() {
         return bruttoPrice;
     }
-    public List<Byte> getPictures() {
+    public List<String> getPictures() {
         return pictures;
     }
     public Invoice getInvoice() {
@@ -56,5 +56,9 @@ public class Examination {
 
     public Patient getPatient() {
         return patient;
+    }
+
+    public void setPictures(List<String> pictures) {
+        this.pictures = pictures;
     }
 }

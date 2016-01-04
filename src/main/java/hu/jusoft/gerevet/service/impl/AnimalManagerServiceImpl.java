@@ -6,13 +6,9 @@ import hu.jusoft.gerevet.repository.model.Animal;
 import hu.jusoft.gerevet.repository.model.Patient;
 import hu.jusoft.gerevet.service.builder.AnimalBuilder;
 import hu.jusoft.gerevet.view.model.AnimalPageModel;
-import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 import hu.jusoft.gerevet.service.AnimalManagerService;
-import hu.jusoft.gerevet.service.ListingExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by Regina Seres on 12/11/2015.
@@ -29,10 +25,13 @@ public class AnimalManagerServiceImpl implements AnimalManagerService{
     @Autowired
     private AnimalBuilder animalBuilder;
 
+    private static final String ID_SEPARATE_STRING = "-";
+
     @Override
     public Animal findAnimalByPatientIdAndAnimalId(String actAnimalId) {
-        String patientId = actAnimalId.split("-")[0];
-        String animalId = actAnimalId.split("-")[1];
+        String patientId = actAnimalId.split(ID_SEPARATE_STRING)[0];
+        String animalId = actAnimalId.split(ID_SEPARATE_STRING)[1];
+
         return animalRepository.findAnimalByPatientIdAndAnimalId(patientId, animalId);
     }
 

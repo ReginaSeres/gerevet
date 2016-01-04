@@ -31,7 +31,7 @@ public class PatientController {
 
     @RequestMapping("/patient/{id}")
     public ModelAndView patient(@PathVariable("id") String id) {
-        Patient patient = patientManagerService.findOne(id);
+        Patient patient = patientManagerService.findTheOnlyPatientById(id);
 
         ModelAndView mav = new ModelAndView("patient");
         mav.addAllObjects(patientModelBuilder.buildPatientModelMap(patient));

@@ -39,7 +39,7 @@ public class PetientManagerServiceImpl implements PatientManagerService {
     }
 
     @Override
-    public Patient findOne(String id) {
+    public Patient findTheOnlyPatientById (String id) {
         return patientRepository.findOne(id);
     }
 
