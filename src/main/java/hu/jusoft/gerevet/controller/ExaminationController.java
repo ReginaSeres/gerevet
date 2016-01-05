@@ -8,17 +8,19 @@ import hu.jusoft.gerevet.repository.model.*;
 import hu.jusoft.gerevet.service.AnimalManagerService;
 import hu.jusoft.gerevet.service.ExaminationManagerService;
 import hu.jusoft.gerevet.service.PatientManagerService;
+import hu.jusoft.gerevet.view.model.NewExaminationPageModel;
 import hu.jusoft.gerevet.view.modelbuilder.ExaminationModelBuilder;
 import hu.jusoft.gerevet.view.modelbuilder.PatientModelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,5 +71,13 @@ public class ExaminationController {
         mav.addAllObjects(patientModelBuilder.buildPatientModelMap(listOfPatients));
 
         return mav;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = SAVE_EXAMINATION_URL, method = RequestMethod.POST)
+    public String saveExamination(@ModelAttribute(EXAMINATION_PAGE_MODEL_NAME) NewExaminationPageModel examination, HttpServletResponse response) throws IOException {
+
+        System.out.println(examination);
+        return "addExamination";
     }
 }

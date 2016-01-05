@@ -52,6 +52,15 @@ public class ControllerConstants {
     public static final String ADD_EXAMINATION_URL = "/addExamination";
     public static final String ADD_EXAMINATION = "addExamination";
 
+    public static final String SAVE_EXAMINATION_URL = "/saveExamination";
+    public static final String EXAMINATION_PAGE_MODEL_NAME = "examinationPageModel";
+
+
+
+    public static final String GET_PATIENT_URL = "/getPatient";
+    public static final String PATIENTID_INDEX_VARIABLE = "patientId";
+    public static final String PATIENT_PARAMETERIZED_URL = GET_PATIENT_URL + "/{" + PATIENTID_INDEX_VARIABLE + "}";
+
 
     public static final String SEARCH_PARAMETERIZED_URL = "/search/*";
 

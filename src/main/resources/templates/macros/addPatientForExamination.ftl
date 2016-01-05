@@ -1,6 +1,7 @@
 <#macro addPatientForExamination>
     <@field "animal.label.patient" "dot-circle-o">
-        <select id="patient" name="patient" class="selectpicker" data-live-search="true">
+        <select id="patientId" name="patientId" class="selectpicker" data-live-search="true">
+            <option value="-1"><@label "examination.select.patient.select_one_patient"/></option>
             <#list patients as patient>
                 <option value="${patient.id}">${patient.name}</option>
             </#list>
@@ -8,22 +9,22 @@
     </@field>
 
     <@field "patient.label.name" "dot-circle-o">
-        <input type="text" class="form-control" id="patient_name" name="name" />
+        <input type="text" class="form-control" id="patientName" name="patientName" />
     </@field>
 
     <@field "patient.label.city" "map-marker">
-        <input type="text" class="form-control" id="patient_city" name="city" />
+        <input type="text" class="form-control" id="patientCity" name="patientCity" />
     </@field>
 
     <@field "patient.label.address" "map-marker">
-        <input type="text" class="form-control" id="patient_address" name="address" />
+        <input type="text" class="form-control" id="patientAddress" name="patientAddress" />
     </@field>
 
     <@field "patient.label.phone" "phone">
-        <input type="text" class="form-control" id="patient_phoneNumber" name="phoneNumber" />
+        <input type="text" class="form-control" id="patientPhoneNumber" name="patientPhoneNumber" />
     </@field>
 
     <@field "patient.label.email" "envelope-o">
-        <input type="number" min="0" class="form-control" id="patient_emailAddress" name="emailAddress" />
+        <input type="text" class="form-control" id="patientEmailAddress" name="patientEmailAddress" />
     </@field>
 </#macro>

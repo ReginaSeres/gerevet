@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -56,6 +58,14 @@ public class PatientController {
     @ResponseBody
     @RequestMapping(value = {"/updatePatient"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public PatientPageModel updatePatient(@RequestBody PatientPageModel patient) {
+        return patient;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = PATIENT_PARAMETERIZED_URL)
+    public Patient saveExamination(@ModelAttribute(PATIENTID_INDEX_VARIABLE) String patientId) throws IOException {
+        Patient patient = patientManagerService.findTheOnlyPatientById(patientId);
+
         return patient;
     }
 }
