@@ -1,6 +1,9 @@
 package hu.jusoft.gerevet.view.model;
 
+import hu.jusoft.gerevet.repository.model.Item;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Regina Seres on 1/5/2016.
@@ -33,6 +36,14 @@ public class NewExaminationPageModel {
     private Date invoicePaymentDeadline;
     private Date invoiceDayOfPayment;
 
+    private List<Item> firstGroupDatas;
+
+    public List<Item> getFirstGroupDatas() {
+        return firstGroupDatas;
+    }
+    public void setFirstGroupDatas(List<Item> firstGroupDatas) {
+        this.firstGroupDatas = firstGroupDatas;
+    }
 
     public String getPatientId() {
         return patientId;

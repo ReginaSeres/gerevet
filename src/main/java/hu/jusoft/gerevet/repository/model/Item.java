@@ -15,4 +15,12 @@ public class Item {
     public BigDecimal getPrice() {
         return price;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 }

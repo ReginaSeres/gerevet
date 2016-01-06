@@ -35,13 +35,23 @@
                     Csoport megnevezes
                 </td>
                 <td>
-                    <span id="firstInvoiceGroup"></span>
+                    <span id="firstInvoiceGroup">0</span>
                 </td>
             </tr>
         </table>
         <div>
             <table class="table table-striped table-hover" id="firstGroupElements"><tbody></tbody></table>
-            <button type="button" id="firstInvoiceGroupAdd">+</button>
+            <button class="btn btn-primary btn-xs" type="button" id="firstInvoiceGroupAdd">+</button>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="col-lg-10">
+        </div>
+        <div class="col-lg-1">
+            <span><strong>SUM</strong></span>
+        </div>
+        <div class="col-lg-1 text-right">
+            <span id="netSum">0</span>
         </div>
     </div>
 </#macro>

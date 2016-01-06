@@ -36,8 +36,15 @@ public class PatientModelBuilder {
             listOfPatientsPageModel.add(build(patient));
         }
 
+        List<String> invoiceGroups = new ArrayList<>();
+        invoiceGroups.add("Egyes");
+        invoiceGroups.add("Kettes");
+        invoiceGroups.add("Harmas");
+        invoiceGroups.add("Negyes");
+
         Map<String, Object> model = new HashMap<>();
         model.put("patients", listOfPatientsPageModel);
+        model.put("invoiceGroups", invoiceGroups);
 
         return model;
     }
