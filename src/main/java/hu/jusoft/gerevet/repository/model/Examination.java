@@ -19,9 +19,28 @@ public class Examination {
     private String examination;
     private String comment;
     private BigDecimal bruttoPrice;
-    private List<String> pictures;
+    private List<FileData> pictures;
+    private List<FileData> documents;
     private Invoice invoice;
     private Patient patient;
+
+    public  Examination() {
+
+    }
+
+    public Examination(String patientId, String animalId, Date examinationDate, String symptom, String examination, String comment, BigDecimal bruttoPrice, List<FileData> documents, List<FileData> pictures, Invoice invoice, Patient patient) {
+        this.patientId = patientId;
+        this.animalId = animalId;
+        this.examinationDate = examinationDate;
+        this.symptom = symptom;
+        this.examination = examination;
+        this.comment = comment;
+        this.bruttoPrice = bruttoPrice;
+        this.documents = documents;
+        this.pictures = pictures;
+        this.invoice = invoice;
+        this.patient = patient;
+    }
 
     public String getId() {
         return id;
@@ -47,18 +66,24 @@ public class Examination {
     public BigDecimal getBruttoPrice() {
         return bruttoPrice;
     }
-    public List<String> getPictures() {
+    public List<FileData> getPictures() {
         return pictures;
     }
     public Invoice getInvoice() {
         return invoice;
     }
-
+    public List<FileData> getDocuments() {
+        return documents;
+    }
     public Patient getPatient() {
         return patient;
     }
 
-    public void setPictures(List<String> pictures) {
+    public void setPictures(List<FileData> pictures) {
         this.pictures = pictures;
+    }
+
+    public void setDocuments(List<FileData> documents) {
+        this.documents = documents;
     }
 }

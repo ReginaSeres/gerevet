@@ -12,7 +12,5 @@ public interface ListingExaminationService {
 
     List<ExaminationPageModel> getListOfExaminations();
 
-    List<ExaminationPageModel> getListOfExaminationsForActualPatientId(String actualPatientId);
-
     Page<hu.jusoft.gerevet.repository.model.Examination> getNExamiationsInActualPage(int actPage, int countExaminationsOnOnePage);
 }

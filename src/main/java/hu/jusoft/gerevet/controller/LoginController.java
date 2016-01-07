@@ -2,7 +2,7 @@ package hu.jusoft.gerevet.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/login")
+    @RequestMapping(value = LOGIN_URL)
     public String showLoginForm(HttpServletRequest request) {
-        return "login";
+        return LOGIN;
     }
 
 }

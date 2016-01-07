@@ -1,13 +1,14 @@
 package hu.jusoft.gerevet.view.modelbuilder;
 
-import hu.jusoft.gerevet.repository.model.Animal;
-import hu.jusoft.gerevet.repository.model.Examination;
+import hu.jusoft.gerevet.repository.model.*;
 import hu.jusoft.gerevet.view.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import static hu.jusoft.gerevet.controller.ControllerConstants.*;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,11 +39,48 @@ public class ExaminationModelBuilder {
 
         ExaminationPageModel examinationPageModel = new ExaminationPageModel(
                 examination.getId(), patientPageModel, animalPageModel, invoicePageModel,
-                examination.getPictures(), examination.getExaminationDate(),
+                examination.getPictures(), examination.getDocuments(), examination.getExaminationDate(),
                 examination.getSymptom(), examination.getExamination(), examination.getComment(),
                 examination.getBruttoPrice());
 
         model.put(EXAMINATION, examinationPageModel);
+
         return model;
+    }
+
+    public Examination buildExaminationMap(NewExaminationPageModel examinationPageModel) {
+        List<Animal> animalList = new ArrayList<>();
+        animalList.add(new Animal(examinationPageModel.getAnimalId(),
+                examinationPageModel.getAnimalName(),
+                examinationPageModel.getAnimalSpecies(),
+                examinationPageModel.getAnimalBreed(),
+                examinationPageModel.getAnimalSex(),
+                examinationPageModel.getAnimalAge()));
+
+        Patient patient = new Patient(examinationPageModel.getPatientId(),
+                examinationPageModel.getPatientName(),
+                examinationPageModel.getPatientAddress(),
+                examinationPageModel.getPatientCity(),
+                examinationPageModel.getPatientPhoneNumber(),
+                examinationPageModel.getPatientEmailAddress(), animalList);
+
+        Invoice invoice = new Invoice(examinationPageModel.getInvoiceId(),
+                examinationPageModel.getInvoiceDate(),
+                examinationPageModel.getInvoicePaymentDeadline(),
+                examinationPageModel.getInvoiceDayOfPayment(),
+                examinationPageModel.getInvoiceGroups());
+
+        Examination examination = new Examination(examinationPageModel.getPatientId(),
+                examinationPageModel.getAnimalId(),
+                examinationPageModel.getExaminationDate(),
+                examinationPageModel.getExaminationSymptom(),
+                examinationPageModel.getExaminationExamination(),
+                examinationPageModel.getExaminationComment(),
+                new BigDecimal(0),
+                new ArrayList<FileData>(), new ArrayList<FileData>(),
+                invoice,
+                patient);
+
+        return examination;
     }
 }

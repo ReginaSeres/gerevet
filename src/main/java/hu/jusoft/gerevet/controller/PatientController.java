@@ -31,32 +31,32 @@ public class PatientController {
     @Autowired
     private PatientModelBuilder patientModelBuilder;
 
-    @RequestMapping("/patient/{id}")
-    public ModelAndView patient(@PathVariable("id") String id) {
+    @RequestMapping(value = PATIENT_PARAMETRIZED_URL)
+    public ModelAndView patient(@PathVariable(PATIENT_INDEX_VARIABLE) String id) {
         Patient patient = patientManagerService.findTheOnlyPatientById(id);
 
-        ModelAndView mav = new ModelAndView("patient");
+        ModelAndView mav = new ModelAndView(PATIENT);
         mav.addAllObjects(patientModelBuilder.buildPatientModelMap(patient));
 
         return mav;
     }
 
-    @RequestMapping("/addPatient")
+    @RequestMapping(value = ADD_PATIENT_URL)
     public ModelAndView addPatient() {
-        ModelAndView mav = new ModelAndView("addPatient");
+        ModelAndView mav = new ModelAndView(ADD_PATIENT);
 
         return mav;
     }
 
-    @RequestMapping(value = "/savePatient", method = RequestMethod.POST)
+    @RequestMapping(value = SAVE_PATIENT_URL, method = RequestMethod.POST)
     public void savePatient(
-            @ModelAttribute("patientPageModel") PatientPageModel patientPageModel, HttpServletResponse response) throws IOException {
+            @ModelAttribute(PATIENT_PAGE_MODEL) PatientPageModel patientPageModel, HttpServletResponse response) throws IOException {
         String id = patientManagerService.save(patientBuilder.buildFromPageModel(patientPageModel));
-        response.sendRedirect("/patient/" + id);
+        response.sendRedirect(PATIENT_URL + "/" + id);
     }
 
     @ResponseBody
-    @RequestMapping(value = {"/updatePatient"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = UPDATE_PATIENT_URL, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public PatientPageModel updatePatient(@RequestBody PatientPageModel patient) {
         return patient;
     }

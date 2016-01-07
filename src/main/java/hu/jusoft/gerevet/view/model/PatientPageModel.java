@@ -48,23 +48,18 @@ public class PatientPageModel {
     public void setId(String id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setAddress(String address) {
         this.address = address;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }

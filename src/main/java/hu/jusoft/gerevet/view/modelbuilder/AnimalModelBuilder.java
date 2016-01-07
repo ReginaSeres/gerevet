@@ -32,6 +32,10 @@ public class AnimalModelBuilder {
     }
 
     private AnimalPageModel build(Animal animal) {
-        return new AnimalPageModel(animal.getAnimalId(), animal.getName(), animal.getSpecies(), animal.getBreed(), animal.getSex(), animal.getAge());
+        return new AnimalPageModel(animal.getAnimalId(),
+                animal.getName(), animal.getSpecies(),
+                animal.getBreed(),
+                animal.getSex(),
+                animal.getAge());
     }
 }

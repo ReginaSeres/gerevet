@@ -1,6 +1,8 @@
 package hu.jusoft.gerevet.view.model;
 
+import hu.jusoft.gerevet.repository.model.InvoiceGroups;
 import hu.jusoft.gerevet.repository.model.Item;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -24,26 +26,21 @@ public class NewExaminationPageModel {
     private int animalAge;
 
     private Date examinationDate;
-    //private List<Byte> documents;
+    private List<MultipartFile> documentsFiles;
     private String examinationSymptom;
     private String examinationExamination;
     private String examinationComment;
 
-    //private List<Byte> pictures;
+    private List<MultipartFile> picturesFiles;
 
     private String invoiceId;
     private Date invoiceDate;
     private Date invoicePaymentDeadline;
     private Date invoiceDayOfPayment;
 
-    private List<Item> firstGroupDatas;
+    private List<InvoiceGroups> invoiceGroups;
 
-    public List<Item> getFirstGroupDatas() {
-        return firstGroupDatas;
-    }
-    public void setFirstGroupDatas(List<Item> firstGroupDatas) {
-        this.firstGroupDatas = firstGroupDatas;
-    }
+
 
     public String getPatientId() {
         return patientId;
@@ -84,6 +81,9 @@ public class NewExaminationPageModel {
     public Date getExaminationDate() {
         return examinationDate;
     }
+    public List<MultipartFile> getDocumentsFiles() {
+        return documentsFiles;
+    }
     public String getExaminationSymptom() {
         return examinationSymptom;
     }
@@ -92,6 +92,9 @@ public class NewExaminationPageModel {
     }
     public String getExaminationComment() {
         return examinationComment;
+    }
+    public List<MultipartFile> getPicturesFiles() {
+        return picturesFiles;
     }
     public String getInvoiceId() {
         return invoiceId;
@@ -104,6 +107,9 @@ public class NewExaminationPageModel {
     }
     public Date getInvoiceDayOfPayment() {
         return invoiceDayOfPayment;
+    }
+    public List<InvoiceGroups> getInvoiceGroups() {
+        return invoiceGroups;
     }
 
     public void setPatientId(String patientId) {
@@ -145,6 +151,9 @@ public class NewExaminationPageModel {
     public void setExaminationDate(Date examinationDate) {
         this.examinationDate = examinationDate;
     }
+    public void setDocumentsFiles(List<MultipartFile> documentsFiles) {
+        this.documentsFiles = documentsFiles;
+    }
     public void setExaminationSymptom(String examinationSymptom) {
         this.examinationSymptom = examinationSymptom;
     }
@@ -153,6 +162,9 @@ public class NewExaminationPageModel {
     }
     public void setExaminationComment(String examinationComment) {
         this.examinationComment = examinationComment;
+    }
+    public void setPicturesFiles(List<MultipartFile> picturesFiles) {
+        this.picturesFiles = picturesFiles;
     }
     public void setInvoiceId(String invoiceId) {
         this.invoiceId = invoiceId;
@@ -165,5 +177,8 @@ public class NewExaminationPageModel {
     }
     public void setInvoiceDayOfPayment(Date invoiceDayOfPayment) {
         this.invoiceDayOfPayment = invoiceDayOfPayment;
+    }
+    public void setInvoiceGroups(List<InvoiceGroups> invoiceGroups) {
+        this.invoiceGroups = invoiceGroups;
     }
 }

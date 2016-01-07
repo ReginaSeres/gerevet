@@ -51,7 +51,7 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="examination"><@examinationData examination /></div>
             <div class="tab-pane fade" id="pictures"><@picturesData examination.pictures /></div>
-            <div class="tab-pane fade" id="invoice"><@invoiceData examination.invoice /></div>
+            <div class="tab-pane fade" id="invoice"><@invoiceData examination.invoice examination.id /></div>
         </div>
     </div>
 </div>

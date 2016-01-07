@@ -3,15 +3,15 @@ package hu.jusoft.gerevet.repository.model;
 /**
  * Created by Regina Seres on 1/3/2016.
  */
-public class Picture {
+public class ExaminationFile {
     private String name;
     private String contentType;
-    private byte[] picture;
+    private byte[] file;
 
-    public Picture(String name, String contentType, byte[] picture) {
+    public ExaminationFile(String name, String contentType, byte[] file) {
         this.name = name;
         this.contentType = contentType;
-        this.picture = picture;
+        this.file = file;
     }
 
     public String getName() {
@@ -22,8 +22,8 @@ public class Picture {
         return contentType;
     }
 
-    public byte[] getPicture() {
-        return picture;
+    public byte[] getFile() {
+        return file;
     }
 
     public void setName(String name) {
@@ -34,7 +34,7 @@ public class Picture {
         this.contentType = contentType;
     }
 
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
+    public void setFile(byte[] file) {
+        this.file = file;
     }
 }

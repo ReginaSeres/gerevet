@@ -4,7 +4,7 @@ $(document).ready(function() {
     $("#invoiceId").val(0);
     $(".datepicker").datepicker({});
 
-
+    $(":file").filestyle({buttonName: "btn-primary"});
 
     var patient;
 
@@ -58,30 +58,30 @@ $(document).ready(function() {
         }
     });
 
-    $('#firstInvoiceGroupAdd').click(function() {
-
-        var actIndex = $('#firstGroupElements').children('tbody').children('tr').length;
+    $('.add-invoice-element').click(function() {
+        var actIndex = $(this).prev().children('tbody').children('tr').length;
+        var groupName = $(this).data("groupname");
+        var $groupDataAmount = $(this).parent().parent().find(".invoice-group-amount");
         var tableRow = $('<tr>'),
             tableData1 = $('<td>'),
             tableData2 = $('<td>'),
             inputDescription = $('<input>');
-            inputDescription.attr("name", "firstGroupDatas[" + actIndex + "].description")
+            inputDescription.attr("name", groupName + ".items[" + actIndex + "].description")
                             .attr("type", "text")
-                            .attr("id", "firstGroupDatasDescription[" + actIndex + "]")
+                            //.attr("id", "firstGroupDatasDescription[" + actIndex + "]")
                             .val('Image cell');
             inputDescription[0].innerHTML = inputDescription.val();
             inputDescription[0].value = inputDescription.val();
             inputPrice = $('<input>');
-            inputPrice.attr("name", "firstGroupDatas[" + actIndex + "].price")
+            inputPrice.attr("name", groupName + ".items[" + actIndex + "].price")
                       .attr("type", "number")
-                      .attr("id", "firstGroupDatasPrice[" + actIndex + "]")
+                      //.attr("id", "firstGroupDatasPrice[" + actIndex + "]")
                       .addClass("firstGroupDatasPrice")
                       .addClass("price")
                       .val('0');
             inputPrice[0].innerHTML = inputPrice.val();
             inputPrice[0].value = inputPrice.val();
-            $tableBody = $("#firstGroupElements").find('tbody');
-
+            $tableBody = $(this).prev().find('tbody');
 
 
             $tableBody.append(
@@ -89,14 +89,20 @@ $(document).ready(function() {
                         .append(tableData1.append(inputDescription))
                         .append(tableData2.append(inputPrice))
             );
-    });
 
-    $("body").on("change paste keyup input", ".firstGroupDatasPrice", function(e) {
-        var sum = 0;
-        $('.firstGroupDatasPrice').each(function( index ) {
-            sum += Number(this.value);
+            $(inputPrice).on("change paste keyup input", null, function(e) {
+                var $containerDiv = $(this).closest(".table-container").find(".invoice-group-amount-hidden");
+                $containerDiv.val(this.value);
+
+                var $containerDiv = $(this).closest(".table-container").find(".invoice-group-amount");
+                var $tableBody = $(this).parent().parent().parent();
+                var sum = 0;
+                $tableBody.find(".firstGroupDatasPrice").each(function( index ) {
+                    sum += Number(this.value);
+                });
+                $containerDiv.text(sum);
         });
-        $('#firstInvoiceGroup').text(sum);
+
     });
 
     $("body").on("change paste keyup input", ".price", function(e) {

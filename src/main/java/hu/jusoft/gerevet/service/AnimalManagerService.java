@@ -4,8 +4,6 @@ import hu.jusoft.gerevet.repository.model.Animal;
 import hu.jusoft.gerevet.view.model.AnimalPageModel;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Created by Regina Seres on 12/11/2015.
  */

@@ -29,20 +29,28 @@
         </div>
     </div>
     <div class="col-lg-6">
-        <table class="table table-striped table-hover">
-            <tr>
-                <td>
-                    Csoport megnevezes
-                </td>
-                <td>
-                    <span id="firstInvoiceGroup">0</span>
-                </td>
-            </tr>
-        </table>
-        <div>
-            <table class="table table-striped table-hover" id="firstGroupElements"><tbody></tbody></table>
-            <button class="btn btn-primary btn-xs" type="button" id="firstInvoiceGroupAdd">+</button>
-        </div>
+        <#list invoiceGroups as group>
+            <#assign i = group_index>
+            <#assign groupname = "invoiceGroups[${i}]" >
+            <div class="table-container">
+                <table class="table table-striped table-hover">
+                    <tr class="info">
+                        <td>
+                            <p>${group}</p>
+                            <input type="hidden" name="${groupname}.name" value="${group}"/>
+                        </td>
+                        <td class="text-right">
+                            <span class="invoice-group-amount">0</span>
+                            <input type="hidden" name="${groupname}.netPrice" class="invoice-group-amount-hidden" value="0"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    <table class="table table-striped table-hover" id="firstGroupElements"><tbody></tbody></table>
+                    <button class="btn btn-primary btn-xs add-invoice-element" type="button" data-groupname=${groupname}>+</button>
+                </div>
+            </div>
+        </#list>
     </div>
     <div class="col-lg-12">
         <div class="col-lg-10">

@@ -1,5 +1,6 @@
 package hu.jusoft.gerevet.repository.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -7,6 +8,7 @@ import java.util.List;
  */
 public class InvoiceGroups {
     private String name;
+    private BigDecimal netPrice;
     private List<Item> items;
 
     public String getName() {
@@ -14,5 +16,19 @@ public class InvoiceGroups {
     }
     public List<Item> getItems() {
         return items;
+    }
+    public BigDecimal getNetPrice() {
+        return netPrice;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setNetPrice(BigDecimal netPrice) {
+        this.netPrice = netPrice;
+    }
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

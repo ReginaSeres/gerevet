@@ -8,11 +8,17 @@ public class ControllerConstants {
     public static final String URL = "url";
 
     public static final String HOME_URL = "";
+    public static final String HOME_PAGE_PARAMETER = "actPage";
+    public static final String HOME = "index";
 
 
-    public static final String PICTURES_URL = "/getPhoto";
-    public static final String PICTURES_INDEX_VARIABLE = "actPhoto";
-    public static final String PICTURES_PARAMETERIZED_URL = PICTURES_URL + "/{" + PICTURES_INDEX_VARIABLE + "}";
+    public static final String LOGIN_URL = "/login";
+    public static final String LOGIN = "login";
+
+
+    public static final String FILE_URL = "/getFile";
+    public static final String FILE_INDEX_VARIABLE = "actFile";
+    public static final String FILE_PARAMETERIZED_URL = FILE_URL + "/{" + FILE_INDEX_VARIABLE + "}";
 
 
     public static final String SEARCH_NAME_URL = "/searchName";
@@ -56,6 +62,23 @@ public class ControllerConstants {
     public static final String EXAMINATION_PAGE_MODEL_NAME = "examinationPageModel";
 
 
+    public static final String PATIENT_URL = "/patient";
+    public static final String PATIENT_INDEX_VARIABLE = "id";
+    public static final String PATIENT_PARAMETRIZED_URL = PATIENT_URL + "/{" + PATIENT_INDEX_VARIABLE + "}";
+    public static final String PATIENT = "patient";
+
+    public static final String ADD_PATIENT_URL = "/addPatient";
+    public static final String ADD_PATIENT = "addPatient";
+
+    public static final String SAVE_PATIENT_URL = "/savePatient";
+    public static final String PATIENT_PAGE_MODEL = "patientPageModel";
+
+    public static final String UPDATE_PATIENT_URL = "/updatePatient";
+
+    public static final String GET_INVOICE_PDF_URL = "/getInvoice";
+    public static final String GET_INVOICE_PDF_INDEX_VARIABLE = "examinationId";
+    public static final String GET_INVOICE_PDF_PARAMETERIZED_URL = GET_INVOICE_PDF_URL + "/{" + GET_INVOICE_PDF_INDEX_VARIABLE + "}";
+
 
     public static final String GET_PATIENT_URL = "/getPatient";
     public static final String PATIENTID_INDEX_VARIABLE = "patientId";
@@ -63,6 +86,7 @@ public class ControllerConstants {
 
 
     public static final String SEARCH_PARAMETERIZED_URL = "/search/*";
+    public static final String SEARCH_QUERY_PARAMETER = "queryName";
 
 
     public static final String EDIT_JS = "editJS";

@@ -4,7 +4,6 @@ import hu.jusoft.gerevet.repository.model.Animal;
 import hu.jusoft.gerevet.repository.model.Examination;
 import hu.jusoft.gerevet.view.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import java.util.*;
@@ -16,9 +15,6 @@ import static hu.jusoft.gerevet.controller.ControllerConstants.*;
  */
 @Component
 public class HomeModelBuilder {
-
-    @Autowired
-    private MessageSource msg;
 
     @Autowired
     private PatientModelBuilder patientModelBuilder;

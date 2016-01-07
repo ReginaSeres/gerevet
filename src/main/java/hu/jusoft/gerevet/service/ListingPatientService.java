@@ -8,9 +8,7 @@ import java.util.List;
  * Created by Regina Seres on 12/10/2015.
  */
 public interface ListingPatientService {
-    List<PatientPageModel> getTenPatientFromActualPage(int actPage);
-
-    int getPagesCount();
 
     List<PatientPageModel> getListOfPatient();
+
 }

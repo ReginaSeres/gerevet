@@ -7,11 +7,20 @@ import com.itextpdf.text.pdf.PdfWriter;
 import hu.jusoft.gerevet.repository.model.Examination;
 import hu.jusoft.gerevet.repository.model.InvoiceGroups;
 import hu.jusoft.gerevet.repository.model.Item;
+import hu.jusoft.gerevet.service.ExaminationManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import static hu.jusoft.gerevet.controller.ControllerConstants.*;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -22,8 +31,6 @@ import java.util.*;
 @Controller
 public class PDFExportingController {
 
-    private static String FILE = "c:/Users/Gidu/Desktop/FirstPdf.pdf";
-
     private static Font headerFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
 
@@ -33,23 +40,39 @@ public class PDFExportingController {
     private static Font dataFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.NORMAL);
 
-    public void generatePDF(Examination examination) {
+    @Autowired
+    private ExaminationManagerService examinationManagerService;
+
+    @RequestMapping(value = GET_INVOICE_PDF_PARAMETERIZED_URL, method = RequestMethod.GET)
+    public @ResponseBody
+    void generatePDF(@PathVariable(GET_INVOICE_PDF_INDEX_VARIABLE) String id, HttpServletResponse response) {
+        Examination examination = examinationManagerService.findExaminationByExaminationId(id);
         try {
-            generateInvoicePDFByExamination(examination);
+            generateInvoicePDFByExamination(examination, response);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private void generateInvoicePDFByExamination(Examination examination) throws FileNotFoundException {
+    private void generateInvoicePDFByExamination(Examination examination, HttpServletResponse response) throws FileNotFoundException {
         Document document = new Document();
+
+        response.setHeader("Accept-ranges","bytes");
+        response.setContentType( "application/pdf" );
+        response.setHeader("Expires","0");
+        response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
+        response.setHeader("Content-Description","File Transfer");
+        response.setHeader("Content-Transfer-Encoding:","binary");
+
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            PdfWriter.getInstance(document, response.getOutputStream());
             document.open();
             addMetaData(document);
             addTitlePage(document, examination);
             document.close();
         } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -124,12 +147,15 @@ public class PDFExportingController {
             table.addCell(getCell("", Element.ALIGN_LEFT, boldDataFont, false));
             BigDecimal total = new BigDecimal(0);
             java.util.List<PdfPCell> cells = new ArrayList<>();
-            for (Item item : invoiceGroup.getItems()) {
-                total = total.add(item.getPrice());
-                cells.add(getCell("", Element.ALIGN_LEFT, dataFont, true));
-                cells.add(getCell(item.getDescription(), Element.ALIGN_LEFT, dataFont, true));
-                cells.add(getCell(item.getPrice().toString(), Element.ALIGN_LEFT, dataFont, true));
-                cells.add(getCell("", Element.ALIGN_LEFT, dataFont, true));
+
+            if (invoiceGroup.getItems() != null && invoiceGroup.getItems().size() != 0) {
+                for (Item item : invoiceGroup.getItems()) {
+                    total = total.add(item.getPrice());
+                    cells.add(getCell("", Element.ALIGN_LEFT, dataFont, true));
+                    cells.add(getCell(item.getDescription(), Element.ALIGN_LEFT, dataFont, true));
+                    cells.add(getCell(item.getPrice().toString(), Element.ALIGN_LEFT, dataFont, true));
+                    cells.add(getCell("", Element.ALIGN_LEFT, dataFont, true));
+                }
             }
             table.addCell(getCell(total.toString(), Element.ALIGN_LEFT, boldDataFont, true));
 

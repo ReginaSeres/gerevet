@@ -22,18 +22,18 @@ import static hu.jusoft.gerevet.controller.ControllerConstants.*;
  * Created by Regina Seres on 1/4/2016.
  */
 @Controller
-public class PicturesController {
+public class FileController {
 
     @Autowired
     private ExaminationManagerService examinationManagerService;
 
-    @RequestMapping(value = PICTURES_PARAMETERIZED_URL, method = RequestMethod.GET)
+    @RequestMapping(value = FILE_PARAMETERIZED_URL, method = RequestMethod.GET)
     public @ResponseBody
-    void getPhoto(@PathVariable(PICTURES_INDEX_VARIABLE) String id, HttpServletRequest request,
+    void getPhoto(@PathVariable(FILE_INDEX_VARIABLE) String id, HttpServletRequest request,
                   HttpServletResponse response) {
         try {
-            GridFSDBFile imageForOutput = examinationManagerService.findImageById(id);
-            InputStream is = imageForOutput.getInputStream();
+            GridFSDBFile fileForOutput = examinationManagerService.findImageById(id);
+            InputStream is = fileForOutput.getInputStream();
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
             int nRead;
             byte[] data = new byte[16384];
@@ -41,22 +41,21 @@ public class PicturesController {
                 buffer.write(data, 0, nRead);
             }
             buffer.flush();
-            byte[]imagenEnBytes = buffer.toByteArray();
+            byte[]fileBytes = buffer.toByteArray();
 
             response.setHeader("Accept-ranges","bytes");
-            response.setContentType( "image/jpeg" );
-            response.setContentLength(imagenEnBytes.length);
+            response.setContentType( fileForOutput.getContentType() );
+            response.setContentLength(fileBytes.length);
             response.setHeader("Expires","0");
             response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
             response.setHeader("Content-Description","File Transfer");
             response.setHeader("Content-Transfer-Encoding:","binary");
 
             OutputStream out = response.getOutputStream();
-            out.write( imagenEnBytes );
+            out.write( fileBytes );
             out.flush();
             out.close();
         } catch (Exception e) {
-
 
         }
     }

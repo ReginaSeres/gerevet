@@ -15,14 +15,14 @@
 <#global ftlDebug = true >
 <@header />
 
-<form class="form-horizontal" action="/saveExamination" method="post" name="examinationPageModel" >
+<form class="form-horizontal" action="/saveExamination" method="post" name="examinationPageModel" enctype="multipart/form-data">
     <div class="row">
         <div class="col-lg-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title"><@label "examination.panel.header.animal"/>:</h3>
                 </div>
-                <div class="panel-body">
+                <div class="animal-dashboard panel-body">
                     <@addAnimalForExamination/>
                 </div>
             </div>
@@ -58,7 +58,10 @@
            name="${_csrf.parameterName}"
            value="${_csrf.token}"/>
 
-    <button type="submit" id="saveExamination" class="btn btn-primary"><@label "button.save" /></button>
+    <div class="row margin-top-for-tab">
+        <button type="submit" id="saveExamination" class="btn btn-primary"><@label "button.save" /></button>
+    </div>
+
 </form>
 
 <@footer />

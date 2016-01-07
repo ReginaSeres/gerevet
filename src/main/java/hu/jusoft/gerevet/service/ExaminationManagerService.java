@@ -2,7 +2,7 @@ package hu.jusoft.gerevet.service;
 
 import com.mongodb.gridfs.GridFSDBFile;
 import hu.jusoft.gerevet.repository.model.Examination;
-import hu.jusoft.gerevet.repository.model.Picture;
+import hu.jusoft.gerevet.repository.model.ExaminationFile;
 import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 
 /**
@@ -13,7 +13,9 @@ public interface ExaminationManagerService {
 
     Examination findExaminationByExaminationId(String id);
 
-    void addImageToExamination(String examinationId, Picture picture);
+    void addImageToExamination(Examination examination, ExaminationFile picture, boolean isPicture);
 
     GridFSDBFile findImageById(String id);
+
+    Examination save(Examination examination);
 }

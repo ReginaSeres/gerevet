@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 public class PatientBuilder {
 
     public Patient buildFromPageModel(PatientPageModel patientPageModel) {
-        return new Patient(patientPageModel.getName(), patientPageModel.getCity(), patientPageModel.getAddress(), patientPageModel.getPhoneNumber(), patientPageModel.getEmailAddress());
+        return new Patient(patientPageModel.getName(),
+                patientPageModel.getCity(),
+                patientPageModel.getAddress(),
+                patientPageModel.getPhoneNumber(),
+                patientPageModel.getEmailAddress());
     }
 }

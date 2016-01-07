@@ -10,8 +10,6 @@ import java.util.List;
  */
 public interface PatientManagerService {
 
-    PatientPageModel getActualPatientFromId(String id);
-
     Patient findTheOnlyPatientById (String id);
 
     String save(Patient patient);

@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/js/searchName.js"></script>
     <script type="text/javascript" src="/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="/js/addExamination.js"></script>
 
     <#if editJS??>

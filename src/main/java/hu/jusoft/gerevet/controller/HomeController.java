@@ -1,5 +1,6 @@
 package hu.jusoft.gerevet.controller;
 
+import hu.jusoft.gerevet.repository.model.Animal;
 import hu.jusoft.gerevet.repository.model.Examination;
 import hu.jusoft.gerevet.service.ListingExaminationService;
 import hu.jusoft.gerevet.view.model.PatientPageModel;
@@ -40,11 +41,11 @@ public class HomeController {
             .getLogger(HomeController.class);
 
     @RequestMapping(value = HOME_URL)
-    public ModelAndView index(@RequestParam(value = "actPage", required = false, defaultValue = "1") int actPage, Locale locale) {
+    public ModelAndView index(@RequestParam(value = HOME_PAGE_PARAMETER, required = false, defaultValue = "1") int actPage, Locale locale) {
         actPage--;
         Page<Examination> listOfExaminationsPage = listingExaminationService.getNExamiationsInActualPage(actPage, COUNT_EXAMINATIONS_ON_ONE_PAGE);
 
-        ModelAndView mav = new ModelAndView("index");
+        ModelAndView mav = new ModelAndView(HOME);
         mav.addAllObjects(homeModelBuilder.buildHomeModelMap(listOfExaminationsPage));
 
         return mav;
@@ -62,7 +63,7 @@ public class HomeController {
 
     @RequestMapping(value = SEARCH_NAME_URL)
     public void searchForName(
-            @RequestParam(value = "queryName", required = true) String queryName, HttpServletResponse response) {
+            @RequestParam(value = SEARCH_QUERY_PARAMETER, required = true) String queryName, HttpServletResponse response) {
         try {
             response.sendRedirect(SEARCH_URL + "/" + queryName + "/1");
         } catch (IOException e) {

@@ -2,6 +2,31 @@
     margin-top: 2em;
 }
 
+.margin-top-for-tab {
+    margin-top: 1em;
+}
+
 textarea {
     resize: none;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
 }

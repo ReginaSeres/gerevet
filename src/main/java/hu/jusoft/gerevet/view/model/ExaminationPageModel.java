@@ -1,5 +1,7 @@
 package hu.jusoft.gerevet.view.model;
 
+import hu.jusoft.gerevet.repository.model.FileData;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,8 @@ public class ExaminationPageModel {
     private PatientPageModel patient;
     private AnimalPageModel animal;
     private InvoicePageModel invoice;
-    private List<String> pictures;
+    private List<FileData> pictures;
+    private List<FileData> documents;
     private Date examinationDate;
     private String symptom;
     private String examination;
@@ -30,9 +33,10 @@ public class ExaminationPageModel {
         this.bruttoPrice = bruttoPrice;
     }
 
-    public ExaminationPageModel(String id, PatientPageModel patient, AnimalPageModel animal, InvoicePageModel invoice, List<String> pictures, Date examinationDate, String symptom, String examination, String comment, BigDecimal bruttoPrice) {
+    public ExaminationPageModel(String id, PatientPageModel patient, AnimalPageModel animal, InvoicePageModel invoice, List<FileData> pictures, List<FileData> documents, Date examinationDate, String symptom, String examination, String comment, BigDecimal bruttoPrice) {
         this(id, patient, animal, invoice, examinationDate, bruttoPrice);
         this.pictures = pictures;
+        this.documents = documents;
         this.symptom = symptom;
         this.examination = examination;
         this.comment = comment;
@@ -48,8 +52,11 @@ public class ExaminationPageModel {
     public InvoicePageModel getInvoice() {
         return invoice;
     }
-    public List<String> getPictures() {
+    public List<FileData> getPictures() {
         return pictures;
+    }
+    public List<FileData> getDocuments() {
+        return documents;
     }
     public Date getExaminationDate() {
         return examinationDate;

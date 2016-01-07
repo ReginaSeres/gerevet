@@ -12,13 +12,6 @@ public class AnimalPageModel {
     private String sex;
     private int age;
 
-    public AnimalPageModel() {};
-
-    public AnimalPageModel(String id, String patient, String name, String species, String breed, String sex, int age) {
-        this(id, name, species, breed, sex, age);
-        this.patient = patient;
-    }
-
     public AnimalPageModel(String id,  String name, String species, String breed, String sex, int age) {
         this.id = id;
         this.name = name;
@@ -53,27 +46,21 @@ public class AnimalPageModel {
     public void setId(String id) {
         this.id = id;
     }
-
     public void setPatient(String patient) {
         this.patient = patient;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setSpecies(String species) {
         this.species = species;
     }
-
     public void setBreed(String breed) {
         this.breed = breed;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
-
     public void setAge(int age) {
         this.age = age;
     }

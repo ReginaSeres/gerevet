@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 public class InvoiceModelBuilder {
 
     public InvoicePageModel build(Invoice invoice) {
-        return new InvoicePageModel(invoice.getInvoiceId(), invoice.getInvoceDate(), invoice.getPaymentDeadline(), invoice.getDayOfPayment());
+        return new InvoicePageModel(invoice.getInvoiceId(),
+                invoice.getInvoceDate(),
+                invoice.getPaymentDeadline(),
+                invoice.getDayOfPayment(),
+                invoice.getInvoiceGroup());
     }
 }

@@ -13,6 +13,14 @@ public class Invoice {
     private Date dayOfPayment;
     private List<InvoiceGroups> invoiceGroup;
 
+    public Invoice(String invoiceId, Date invoceDate, Date paymentDeadline, Date dayOfPayment, List<InvoiceGroups> invoiceGroup) {
+        this.invoiceId = invoiceId;
+        this.invoceDate = invoceDate;
+        this.paymentDeadline = paymentDeadline;
+        this.dayOfPayment = dayOfPayment;
+        this.invoiceGroup = invoiceGroup;
+    }
+
     public  String getInvoiceId() {
         return invoiceId;
     }

@@ -1,30 +1,19 @@
 package hu.jusoft.gerevet.controller;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import hu.jusoft.gerevet.repository.model.*;
-import hu.jusoft.gerevet.service.AnimalManagerService;
 import hu.jusoft.gerevet.service.ExaminationManagerService;
 import hu.jusoft.gerevet.service.PatientManagerService;
 import hu.jusoft.gerevet.view.model.NewExaminationPageModel;
 import hu.jusoft.gerevet.view.modelbuilder.ExaminationModelBuilder;
 import hu.jusoft.gerevet.view.modelbuilder.PatientModelBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static hu.jusoft.gerevet.controller.ControllerConstants.*;
@@ -46,12 +35,6 @@ public class ExaminationController {
 
     @Autowired
     private PatientModelBuilder patientModelBuilder;
-
-    @Autowired
-    private AnimalManagerService animalManagerService;
-
-    @Autowired
-    private PDFExportingController pdfExportingController;
 
     @RequestMapping(value = EXAMINATION_PARAMETERIZED_URL)
     public ModelAndView examination(@PathVariable(EXAMINATION_INDEX_VARIABLE) String id) {
@@ -75,9 +58,36 @@ public class ExaminationController {
 
     @ResponseBody
     @RequestMapping(value = SAVE_EXAMINATION_URL, method = RequestMethod.POST)
-    public String saveExamination(@ModelAttribute(EXAMINATION_PAGE_MODEL_NAME) NewExaminationPageModel examination, HttpServletResponse response) throws IOException {
+    public String saveExamination(@ModelAttribute(EXAMINATION_PAGE_MODEL_NAME) NewExaminationPageModel examinationPageModel, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Examination examination = examinationModelBuilder.buildExaminationMap(examinationPageModel);
 
-        System.out.println(examination);
-        return "addExamination";
+        examinationManagerService.save(examination);
+
+        saveFilesToExamination(examination, examinationPageModel.getDocumentsFiles(), false);
+
+        saveFilesToExamination(examination, examinationPageModel.getPicturesFiles(), true);
+
+        return EXAMINATION_URL + "/" + examination.getId();
+    }
+
+    private void saveFilesToExamination(Examination examination, List<MultipartFile> documentsFiles, boolean isPicture) {
+        for (MultipartFile file : documentsFiles) {
+            saveFile(examination, file, isPicture);
+        }
+    }
+
+    private void saveFile(Examination examination, MultipartFile file, boolean isPicture) {
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+
+                ExaminationFile examinationFile = new ExaminationFile(file.getOriginalFilename(), file.getContentType(), bytes);
+
+                examinationManagerService.addImageToExamination(examination, examinationFile, isPicture);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+        }
     }
 }

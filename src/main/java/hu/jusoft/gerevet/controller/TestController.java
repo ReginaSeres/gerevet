@@ -1,9 +1,7 @@
 package hu.jusoft.gerevet.controller;
 
 import com.mongodb.gridfs.GridFSDBFile;
-import com.mongodb.gridfs.GridFSFile;
-import hu.jusoft.gerevet.repository.model.Examination;
-import hu.jusoft.gerevet.repository.model.Picture;
+import hu.jusoft.gerevet.repository.model.ExaminationFile;
 import hu.jusoft.gerevet.service.ExaminationManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,13 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 
 /**
- * Created by Gidu on 1/2/2016.
+ * Created by Regina Seres on 1/2/2016.
  */
 
 @Controller
@@ -47,9 +42,9 @@ public class TestController {
             try {
                 byte[] bytes = file.getBytes();
 
-                Picture picture = new Picture(file.getName(), file.getContentType(), bytes);
+                ExaminationFile picture = new ExaminationFile(file.getName(), file.getContentType(), bytes);
 
-                examinationManagerService.addImageToExamination("", picture);
+           //     examinationManagerService.addImageToExamination("", picture);
 
                 return "You successfully uploaded " + name + "!";
             } catch (Exception e) {

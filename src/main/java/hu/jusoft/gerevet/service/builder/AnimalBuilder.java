@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 public class AnimalBuilder {
 
     public Animal buildFromPageModel(AnimalPageModel animalPageModel, String id) {
-        return new Animal(id, animalPageModel.getName(), animalPageModel.getSpecies(), animalPageModel.getBreed(), animalPageModel.getSex(), animalPageModel.getAge());
+        return new Animal(id,
+                animalPageModel.getName(),
+                animalPageModel.getSpecies(),
+                animalPageModel.getBreed(),
+                animalPageModel.getSex(),
+                animalPageModel.getAge());
     }
 }

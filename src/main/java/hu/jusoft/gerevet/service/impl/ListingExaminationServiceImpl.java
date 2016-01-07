@@ -26,12 +26,9 @@ import java.util.List;
 @Service
 public class ListingExaminationServiceImpl implements ListingExaminationService {
 
-    private static final int ITEMS_PER_PAGE = 9;
-
     private List<ExaminationPageModel> listOfExaminations = new ArrayList<>();
 
-    @Autowired
-    private ListingPatientService listingPatientService;
+    private static final String SORT_CRITERIA_FOR_LISTING_EXAMINATIONS = "examinationDate";
 
     @Autowired
     private ExaminationRepository examinationRepository;
@@ -42,38 +39,9 @@ public class ListingExaminationServiceImpl implements ListingExaminationService 
     }
 
     @Override
-    public List<ExaminationPageModel> getListOfExaminationsForActualPatientId(String actualPatientId) {
-        List<ExaminationPageModel> listOfExaminationsForActualPatientId = new ArrayList<>();
-
-        for (int i = 0; i < listOfExaminations.size(); i++ ) {
-            if (actualPatientId.equals(listOfExaminations.get(i).getPatient().getId())) {
-                listOfExaminationsForActualPatientId.add(listOfExaminations.get(i));
-            }
-        }
-
-        return listOfExaminationsForActualPatientId;
-    }
-
-    @Override
     public Page<Examination> getNExamiationsInActualPage(int actPage, int countExaminationsOnOnePage) {
-        return examinationRepository.findAll(new PageRequest(actPage, countExaminationsOnOnePage, Sort.Direction.DESC, "examinationDate"));
-    }
-
-    private PatientPageModel getPatientFromPatientId(String patientId) {
-        List<PatientPageModel> listOfPatients = listingPatientService.getListOfPatient();
-        for (int i = 0; i < listOfPatients.size(); i++) {
-            if (patientId.equals(listOfPatients.get(i).getId())) {
-                return listOfPatients.get(i);
-            }
-        }
-        return new PatientPageModel();
-    }
-
-    private int calculateEndIndex(int startIndex) {
-        int endIndex = (startIndex + ITEMS_PER_PAGE);
-        if (endIndex >= listOfExaminations.size()) {
-            endIndex = listOfExaminations.size();
-        }
-        return  endIndex;
+        return examinationRepository.findAll(new PageRequest(actPage,
+                countExaminationsOnOnePage,
+                Sort.Direction.DESC, SORT_CRITERIA_FOR_LISTING_EXAMINATIONS));
     }
 }

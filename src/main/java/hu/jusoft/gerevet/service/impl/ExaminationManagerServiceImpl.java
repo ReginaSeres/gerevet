@@ -3,23 +3,18 @@ package hu.jusoft.gerevet.service.impl;
 import com.mongodb.gridfs.GridFSDBFile;
 import hu.jusoft.gerevet.repository.ExaminationRepositoryCustom;
 import hu.jusoft.gerevet.repository.model.Examination;
-import hu.jusoft.gerevet.repository.model.Picture;
+import hu.jusoft.gerevet.repository.model.ExaminationFile;
+import hu.jusoft.gerevet.repository.model.FileData;
 import hu.jusoft.gerevet.view.model.ExaminationPageModel;
 import hu.jusoft.gerevet.repository.ExaminationRepository;
-import hu.jusoft.gerevet.repository.PatientRepository;
-import hu.jusoft.gerevet.repository.model.Patient;
 import hu.jusoft.gerevet.service.ExaminationManagerService;
 import hu.jusoft.gerevet.service.ListingExaminationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,16 +57,20 @@ public class ExaminationManagerServiceImpl implements ExaminationManagerService 
     }
 
     @Override
-    public void addImageToExamination(String examinationId, Picture picture) {
-        examinationId = "566f091306583586f8ed32c7";
-        String pictureId = examinationRepositoryCustom.addImageToExamination(examinationId, picture);
+    public void addImageToExamination(Examination examination, ExaminationFile examinationFile, boolean isPicture) {
+        String fileId = examinationRepositoryCustom.addImageToExamination(examination.getId(), examinationFile);
 
-        Examination examination = examinationRepository.findOne(examinationId);
-
-        if (examination.getPictures() == null) {
-            examination.setPictures(new ArrayList<String>());
+        if (isPicture) {
+            if (examination.getPictures() == null) {
+                examination.setPictures(new ArrayList<FileData>());
+            }
+            examination.getPictures().add(new FileData(examinationFile.getName(), fileId));
+        } else {
+            if (examination.getDocuments() == null) {
+                examination.setDocuments(new ArrayList<FileData>());
+            }
+            examination.getDocuments().add(new FileData(examinationFile.getName(), fileId));
         }
-        examination.getPictures().add(pictureId);
 
         examinationRepository.save(examination);
     }
@@ -80,5 +79,10 @@ public class ExaminationManagerServiceImpl implements ExaminationManagerService 
     public GridFSDBFile findImageById(String id) {
         return gridFsTemplate.findOne(new Query(Criteria.where("_id").is(
                 id)));
+    }
+
+    @Override
+    public Examination save(Examination examination) {
+        return examinationRepository.save(examination);
     }
 }

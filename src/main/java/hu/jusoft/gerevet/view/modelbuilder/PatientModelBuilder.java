@@ -27,7 +27,12 @@ public class PatientModelBuilder {
     }
 
     public PatientPageModel build(Patient patient) {
-        return new PatientPageModel(patient.getId(), patient.getName(), patient.getAddress(), patient.getCity(), patient.getPhoneNumber(), patient.getEmailAddress());
+        return new PatientPageModel(patient.getId(),
+                patient.getName(),
+                patient.getAddress(),
+                patient.getCity(),
+                patient.getPhoneNumber(),
+                patient.getEmailAddress());
     }
 
     public Map<String, Object> buildPatientModelMap(List<Patient> listOfPatients) {
@@ -37,10 +42,10 @@ public class PatientModelBuilder {
         }
 
         List<String> invoiceGroups = new ArrayList<>();
-        invoiceGroups.add("Egyes");
-        invoiceGroups.add("Kettes");
-        invoiceGroups.add("Harmas");
-        invoiceGroups.add("Negyes");
+        invoiceGroups.add("Alapdíj");
+        invoiceGroups.add("Vizsgálat és kezelés díjak");
+        invoiceGroups.add("Orvosi ellátás és kötszerek");
+        invoiceGroups.add("Utazási költségtérítés");
 
         Map<String, Object> model = new HashMap<>();
         model.put("patients", listOfPatientsPageModel);
