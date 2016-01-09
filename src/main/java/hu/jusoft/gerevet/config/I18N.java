@@ -47,6 +47,7 @@ public class I18N extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
         registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/static/fonts/");
     }
 
     @Override

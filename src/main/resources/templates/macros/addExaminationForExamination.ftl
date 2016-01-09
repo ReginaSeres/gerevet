@@ -23,8 +23,8 @@
 
 <div class="col-lg-3">
     <p><strong><@label "examination.label.documents" />: </strong></p>
-    <input type="file" name="documentsFiles[0]" class="filestyle" data-buttonName="btn-primary">
-    <input type="file" name="documentsFiles[1]" class="filestyle" data-buttonName="btn-primary">
+    <input type="file" name="documentsFiles[0]" class="filestyle" data-buttonName="btn-primary" data-buttonText="<@label "button.browse" />">
+    <input type="file" name="documentsFiles[1]" class="filestyle" date-buttonName="btn-primary" data-buttonText="<@label "button.browse" />">
 </div>
 </div>
 </#macro>

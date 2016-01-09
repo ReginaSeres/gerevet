@@ -8,7 +8,7 @@
 <@header />
 
 <div class="row">
-    <form class="form-horizontal" action="/savePatient" method="post" name="patientPageModel" >
+    <form class="form-horizontal" action="/addPatient" method="post" name="patientPageModel" >
         <div class="col-md-10">
             <@field "patient.label.name" "dot-circle-o">
                 <input type="text" class="form-control" id="name" name="name" />

@@ -30,7 +30,6 @@ $( document ).ready(function() {
             success : function(response) {
                 $('.editable').removeClass('editable-unsaved');
                 $('#updatePatient').addClass('disabled');
-                console.log("aaaaa");
             }
         });
     });

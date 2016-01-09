@@ -36,7 +36,9 @@
                 <table class="table table-striped table-hover">
                     <tr class="info">
                         <td>
-                            <p>${group}</p>
+                            <button class="btn btn-primary btn-xs show-children" type="button">+</button>
+                            <button class="btn btn-primary btn-xs hide-children hidden" type="button">-</button>
+                            <span>${group}</span>
                             <input type="hidden" name="${groupname}.name" value="${group}"/>
                         </td>
                         <td class="text-right">
@@ -45,7 +47,7 @@
                         </td>
                     </tr>
                 </table>
-                <div>
+                <div class="group-items hidden">
                     <table class="table table-striped table-hover" id="firstGroupElements"><tbody></tbody></table>
                     <button class="btn btn-primary btn-xs add-invoice-element" type="button" data-groupname=${groupname}>+</button>
                 </div>

@@ -23,11 +23,16 @@ $(document).ready(function() {
 
             var animals = result.animal;
 
+            if (animals.length == 0) {
+                window.location = "/addAnimal?animalListIsEmpty=" + $("#patientId").val();
+            }
+
             for (var index in animals) {
                 $('#animalId').append($("<option></option>")
                         .attr("value",animals[index].animalId)
                         .text(animals[index].name));
             }
+
             $('#animalId').selectpicker('refresh');
             $("#animalName").val(animals[0].name);
             $("#animalBreed").val(animals[0].breed);
@@ -58,6 +63,20 @@ $(document).ready(function() {
         }
     });
 
+    $('.show-children').click(function () {
+        var $tableDivContainer = $(this).closest(".table-container").find(".group-items");
+        $tableDivContainer.removeClass("hidden");
+        $(this).next().removeClass('hidden');
+        $(this).addClass("hidden");
+    });
+
+    $('.hide-children').click(function () {
+        var $tableDivContainer = $(this).closest(".table-container").find(".group-items");
+        $tableDivContainer.addClass("hidden");
+        $(this).prev().removeClass("hidden");
+        $(this).addClass("hidden");
+    });
+
     $('.add-invoice-element').click(function() {
         var actIndex = $(this).prev().children('tbody').children('tr').length;
         var groupName = $(this).data("groupname");
@@ -68,14 +87,12 @@ $(document).ready(function() {
             inputDescription = $('<input>');
             inputDescription.attr("name", groupName + ".items[" + actIndex + "].description")
                             .attr("type", "text")
-                            //.attr("id", "firstGroupDatasDescription[" + actIndex + "]")
                             .val('Image cell');
             inputDescription[0].innerHTML = inputDescription.val();
             inputDescription[0].value = inputDescription.val();
             inputPrice = $('<input>');
             inputPrice.attr("name", groupName + ".items[" + actIndex + "].price")
                       .attr("type", "number")
-                      //.attr("id", "firstGroupDatasPrice[" + actIndex + "]")
                       .addClass("firstGroupDatasPrice")
                       .addClass("price")
                       .val('0');

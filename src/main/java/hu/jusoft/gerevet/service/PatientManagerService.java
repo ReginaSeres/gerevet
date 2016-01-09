@@ -12,7 +12,7 @@ public interface PatientManagerService {
 
     Patient findTheOnlyPatientById (String id);
 
-    String save(Patient patient);
+    Patient save(Patient patient);
 
     List<Patient> findAllPatient();
 }

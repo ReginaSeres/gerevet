@@ -15,7 +15,7 @@
 <#global ftlDebug = true >
 <@header />
 
-<form class="form-horizontal" action="/saveExamination" method="post" name="examinationPageModel" enctype="multipart/form-data">
+<form class="form-horizontal" action="/addExamination" method="post" name="examinationPageModel" enctype="multipart/form-data">
     <div class="row">
         <div class="col-lg-6">
             <div class="panel panel-info">

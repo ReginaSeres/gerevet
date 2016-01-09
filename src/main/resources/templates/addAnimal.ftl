@@ -13,7 +13,7 @@
             <@field "animal.label.patient" "dot-circle-o">
                 <select id="patient" name="patient" class="selectpicker" data-live-search="true">
                     <#list patients as patient>
-                        <option value="${patient.id}">${patient.name}</option>
+                        <option <#if patientId = patient.id>selected</#if> value="${patient.id}">${patient.name}</option>
                     </#list>
                 </select>
             </@field>

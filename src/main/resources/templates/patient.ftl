@@ -12,8 +12,7 @@
         <@ui.control "/widgets/patientDetails.ftl", patient />
     </div>
     <div class="col-md-2">
-        <a id="editPatient" class="btn btn-primary"><@label "button.edit" /></a>
-        <a id="updatePatient" class="btn btn-primary hidden"><@label "button.save" /></a>
+        <a id="updatePatient" class="btn btn-primary disabled"><@label "button.save" /></a>
     </div>
 </div>
 

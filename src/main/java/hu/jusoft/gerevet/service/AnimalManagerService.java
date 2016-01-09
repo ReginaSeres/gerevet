@@ -12,6 +12,6 @@ public interface AnimalManagerService {
 
     Animal findAnimalByPatientIdAndAnimalId(String actAnimalId);
 
-    void save(AnimalPageModel animalPageModel);
+    String save(AnimalPageModel animalPageModel);
 
 }

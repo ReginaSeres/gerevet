@@ -36,7 +36,7 @@ public class AnimalManagerServiceImpl implements AnimalManagerService{
     }
 
     @Override
-    public void save(AnimalPageModel animalPageModel) {
+    public String save(AnimalPageModel animalPageModel) {
         Patient patient = patientRepository.findOne(animalPageModel.getPatient());
 
         Animal animal = animalBuilder.buildFromPageModel(animalPageModel, "5");
@@ -44,5 +44,7 @@ public class AnimalManagerServiceImpl implements AnimalManagerService{
         patient.getAnimal().add(animal);
 
         patientRepository.save(patient);
+
+        return patient.getId() + ID_SEPARATE_STRING + animal.getAnimalId();
     }
 }

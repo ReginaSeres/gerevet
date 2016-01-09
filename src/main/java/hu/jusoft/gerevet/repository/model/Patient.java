@@ -55,4 +55,5 @@ public class Patient implements Serializable {
     public List<Animal> getAnimal() {
         return animal;
     }
+
 }

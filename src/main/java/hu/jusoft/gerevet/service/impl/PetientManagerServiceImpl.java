@@ -25,9 +25,8 @@ public class PetientManagerServiceImpl implements PatientManagerService {
     }
 
     @Override
-    public String save(Patient patient) {
-        patientRepository.save(patient);
-        return patient.getId();
+    public Patient save(Patient patient) {
+        return patientRepository.save(patient);
     }
 
     @Override
