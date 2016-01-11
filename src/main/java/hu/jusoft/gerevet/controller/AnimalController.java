@@ -102,7 +102,7 @@ public class AnimalController {
             Map<String, Object> model = new HashMap<>();
             model.put("errorList", errorList);
 
-            ModelAndView mav = new ModelAndView(ADD_PATIENT);
+            ModelAndView mav = new ModelAndView(ADD_ANIMAL);
             mav.addAllObjects(model);
 
             return mav;
