@@ -8,7 +8,7 @@
 <@header />
 
 <div class="row">
-    <form class="form-horizontal" action="/saveAnimal" method="post" name="animalPageModel" >
+    <form class="form-horizontal" action="/addAnimal" method="post" name="animalPageModel" >
         <div class="col-md-10">
             <@field "animal.label.patient" "dot-circle-o">
                 <select id="patient" name="patient" class="selectpicker" data-live-search="true">

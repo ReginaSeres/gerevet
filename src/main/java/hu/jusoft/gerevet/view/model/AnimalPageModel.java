@@ -12,7 +12,10 @@ public class AnimalPageModel {
     private String sex;
     private int age;
 
-    public AnimalPageModel(String id,  String name, String species, String breed, String sex, int age) {
+    public AnimalPageModel() {
+    }
+
+    public AnimalPageModel(String id, String name, String species, String breed, String sex, int age) {
         this.id = id;
         this.name = name;
         this.species = species;
