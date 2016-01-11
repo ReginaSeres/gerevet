@@ -35,7 +35,7 @@
             </@field>
 
             <@field "animal.label.age" "birthday-cake">
-                <input type="number" min="0" class="form-control" id="age" name="age" />
+                <input type="number" min="0" class="form-control" id="age" name="age" value="0" />
             </@field>
         </div>
         <div class="col-md-2">

@@ -27,9 +27,5 @@ public class AnimalPageModelValidator implements Validator {
         if (animalPageModel.getSpecies() == null || "".equals(animalPageModel.getSpecies())) {
             errors.reject("species", "validator.animal.speciesError");
         }
-
-        if (animalPageModel.getBreed() == null || "".equals(animalPageModel.getBreed())) {
-            errors.reject("breed", "validator.animal.breedError");
-        }
     }
 }

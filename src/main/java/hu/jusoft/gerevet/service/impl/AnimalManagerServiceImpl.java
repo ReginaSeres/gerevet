@@ -10,6 +10,10 @@ import hu.jusoft.gerevet.service.AnimalManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 /**
  * Created by Regina Seres on 12/11/2015.
  */
@@ -39,7 +43,19 @@ public class AnimalManagerServiceImpl implements AnimalManagerService{
     public String save(AnimalPageModel animalPageModel) {
         Patient patient = patientRepository.findOne(animalPageModel.getPatient());
 
-        Animal animal = animalBuilder.buildFromPageModel(animalPageModel, "5");
+        List<String> animalIDs = new ArrayList<>();
+
+        for (Animal animal: patient.getAnimal()) {
+            animalIDs.add(animal.getAnimalId());
+        }
+
+        String generatedId = UUID.randomUUID().toString().split("-")[0];
+
+        while(animalIDs.contains(generatedId)) {
+            generatedId = UUID.randomUUID().toString().split("-")[0];
+        }
+
+        Animal animal = animalBuilder.buildFromPageModel(animalPageModel, generatedId);
 
         patient.getAnimal().add(animal);
 
